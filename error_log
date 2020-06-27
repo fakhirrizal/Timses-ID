@@ -1,0 +1,2 @@
+[13-Jun-2020 19:13:25 Asia/Jakarta] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 52508800 bytes) in /home/timk6135/public_html/app.timses.id/system/database/drivers/mysqli/mysqli_driver.php on line 305
+[13-Jun-2020 19:23:53 Asia/Jakarta] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 52508800 bytes) in /home/timk6135/public_html/app.timses.id/system/database/drivers/mysqli/mysqli_driver.php on line 305

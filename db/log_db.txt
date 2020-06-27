@@ -1,0 +1,3 @@
+Tanggal 05 Oktober 2019
+    - ALTER TABLE `user` ADD `username_api` TEXT NOT NULL AFTER `pass`, ADD `password_api` TEXT NOT NULL AFTER `username_api`;
+    - ALTER TABLE `user` CHANGE `verification_token` `verification_token` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
