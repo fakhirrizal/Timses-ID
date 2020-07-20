@@ -23,12 +23,9 @@ $id_kube = '';
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
-		<!-- <p> 1. Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p>
-		<p> 2. Untuk <b>username</b> dan <b>password</b> dari anggota baru diambil dari isian <b>NIK</b>.</p> -->
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<div class='row'>
@@ -271,22 +268,3 @@ $id_kube = '';
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" language="javascript" >
-		// $(document).ready(function(){
-		// 	$('#tbl1').dataTable({
-		// 		"order": [[ 0, "asc" ]],
-		// 		"bProcessing": true,
-		// 		"ajax" : {
-		// 			url:"<?= site_url('admin/Report/json_laporan_kube'); ?>",
-		// 			data: {id: '<?= $this->uri->segment(3); ?>'}
-		// 		},
-		// 		"aoColumns": [
-		// 					{ mData: 'no', sClass: "alignCenter" },
-		// 					{ mData: 'pelapor' },
-		// 					{ mData: 'tanggal_lapor', sClass: "alignCenter" },
-		// 					{ mData: 'keterangan', sClass: "alignCenter" },
-		// 					{ mData: 'aksi' }
-		// 				]
-		// 	});
-		// });
-	</script>

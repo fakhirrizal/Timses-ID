@@ -36,11 +36,9 @@
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
-		<!-- <p> Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p> -->
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<div class="col-md-12">
@@ -113,11 +111,8 @@
 										<i class="fa fa-trash"></i>
 									</button>
 								</div>
-									<span class="separator">|</span>
-									<a href="<?=base_url('member_side/tambah_data_relawan');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
-								<!-- <button id="sample_editable_1_new" onclick="window.location.href='<?=base_url('Master/admin');?>'" class="btn sbold green"> Tambah Data Baru
-									<i class="fa fa-plus"></i>
-								</button> -->
+								<span class="separator">|</span>
+								<a href="<?=base_url('member_side/tambah_data_relawan');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
 							</div>
 						</div>
 					</div>
@@ -141,7 +136,6 @@
 						<tbody>
 							<?php
 							$no = 1;
-							// foreach ($data_tabel as $key => $value) {
 							?>
 							<tr class="odd gradeX">
 								<td style="text-align: center;">
@@ -162,9 +156,6 @@
 									</div>
 								</td>
 							</tr>
-							<?php
-							// }
-							?>
 						</tbody>
 					</table>
 					</form>
@@ -180,7 +171,6 @@
 					</script>
 				</div>
 			</div>
-			<!-- END EXAMPLE TABLE PORTLET-->
 		</div>
 	</div>
 </div>

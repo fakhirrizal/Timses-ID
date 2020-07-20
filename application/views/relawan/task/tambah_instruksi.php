@@ -295,6 +295,18 @@ $(function(){
                             <div class="form-group select2-bootstrap-prepend">
                                 <label class="control-label col-md-3">Wilayah <span class="required"> * </span></label>
                             </div>
+                            <div class="form-group select2-bootstrap-prepend">
+                                <label class="control-label col-md-3"></label>
+                                <div class="col-md-4">
+                                    <div class="md-checkbox has-success">
+                                        <input type="checkbox" id="checkbox9" class="md-check" name='all_wilayah' value='1'>
+                                        <label for="checkbox9">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> All Wilayah </label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group form-md-line-input has-danger">
 								<?php
 								if($get_info['roleEvent']=='5469458f-8760-45b1-b05a-a4ca3aab2461'){
@@ -310,7 +322,7 @@ $(function(){
 										<?php
 										if($get_info['roleEvent']=='5469458f-8760-45b1-b05a-a4ca3aab2461'){
 											echo'
-											<select id="kabupaten" name="kabupaten" class="form-control select2-allow-clear" required>
+											<select id="kabupaten" name="kabupaten" class="form-control select2-allow-clear" >
 												<option value="">-- Pilih --</option>
 											';
 											$url1 = 'http://kertasfolio.id:99/api/kab/prov/'.$get_info['idWilayahEvent'];
@@ -322,7 +334,7 @@ $(function(){
 											';
 										}elseif($get_info['roleEvent']=='dbabb74d-df5b-4b79-820b-057abdf99b1a'){
 											echo'
-											<select id="kecamatan" name="kecamatan" class="form-control select2-allow-clear" required>
+											<select id="kecamatan" name="kecamatan" class="form-control select2-allow-clear" >
 												<option value="">-- Pilih --</option>
 											';
 											$url1 = 'http://kertasfolio.id:99/api/kec/kab/'.$get_info['idWilayahEvent'];
@@ -350,7 +362,7 @@ $(function(){
 								<label class="col-md-3 control-label" for="form_control_1">Kecamatan </label>
 								<div class="col-md-4">
 									<div class="input-icon">
-										<select id="kecamatan" name="kecamatan" class="form-control select2-allow-clear" required>
+										<select id="kecamatan" name="kecamatan" class="form-control select2-allow-clear" >
 											<option value="">-- Pilih --</option>
 										</select>
 									</div>
@@ -360,7 +372,7 @@ $(function(){
 								<label class="col-md-3 control-label" for="form_control_1">Kelurahan/ Desa </label>
 								<div class="col-md-4">
 									<div class="input-icon">
-										<select id="desa" name="desa" class="form-control select2-allow-clear" required>
+										<select id="desa" name="desa" class="form-control select2-allow-clear" >
 											<option value="">-- Pilih --</option>
 										</select>
 									</div>
@@ -375,7 +387,7 @@ $(function(){
 								<label class="col-md-3 control-label" for="form_control_1">Kelurahan/ Desa </label>
 								<div class="col-md-4">
 									<div class="input-icon">
-										<select id="desa" name="desa" class="form-control select2-allow-clear" required>
+										<select id="desa" name="desa" class="form-control select2-allow-clear" >
 											<option value="">-- Pilih --</option>
 										</select>
 									</div>

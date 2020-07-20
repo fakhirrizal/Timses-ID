@@ -31,11 +31,9 @@
 								
 								<th style="text-align: center;" width="4%"> # </th>
 								<th style="text-align: center;"> Judul Instruksi </th>
-								<th style="text-align: center;"> Deskripsi </th>
 								<th style="text-align: center;"> Waktu </th>
 								<th style="text-align: center;"> Wilayah </th>
 								<th style="text-align: center;"> Relawan </th>
-								<th style="text-align: center;"> Status </th>
 								<th style="text-align: center;" width="7%"> Aksi </th>
 							</tr>
 						</thead>
@@ -51,11 +49,9 @@
 								"aoColumns": [
 											{ mData: 'number', sClass: "alignCenter" },
 											{ mData: 'judul', sClass: "alignCenter" } ,
-											{ mData: 'deskripsi', sClass: "alignCenter" },
 											{ mData: 'waktu', sClass: "alignCenter" },
 											{ mData: 'wilayah', sClass: "alignCenter" },
 											{ mData: 'relawan', sClass: "alignCenter" },
-											{ mData: 'status', sClass: "alignCenter" },
 											{ mData: 'action' }
 										]
 							});

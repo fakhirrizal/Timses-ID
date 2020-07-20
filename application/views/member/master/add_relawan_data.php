@@ -1,5 +1,4 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<!-- <script src="<?=base_url('assets/pages/scripts/components-editors.min.js');?>" type="text/javascript"></script> -->
 <ul class="page-breadcrumb breadcrumb">
 	<li>
 		<span>Master</span>
@@ -50,7 +49,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<form role="form" class="form-horizontal" action="<?= base_url().'member_side/simpan_data_relawan'; ?>" method="post"  enctype='multipart/form-data'>
@@ -211,7 +209,6 @@
 					</form>
 				</div>
 			</div>
-			<!-- END EXAMPLE TABLE PORTLET-->
 		</div>
 	</div>
 </div>

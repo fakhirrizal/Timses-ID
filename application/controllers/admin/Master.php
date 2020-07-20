@@ -21,12 +21,6 @@ class Master extends CI_Controller {
 		$data_tampil = array();
 		$no = 1;
 		foreach ($data as $key => $value) {
-			$isi['checkbox'] =	'
-								<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-									<input type="checkbox" class="checkboxes" name="selected_id[]" value="'.$value['idEvent'].'"/>
-									<span></span>
-								</label>
-								';
 			$isi['number'] = $no++.'.';
 			$url2 = 'http://kertasfolio.id:99/api/rolesevent/id/'.$value['roleEvent'];
 			$nama_role_event = $this->Main_model->getAPI($url2);
@@ -124,7 +118,13 @@ class Master extends CI_Controller {
 		$data['parent'] = 'master';
 		$data['child'] = 'user';
 		$data['grand_child'] = '';
-		// $data['data_tabel'] = $this->Main_model->getSelectedData('kube a', 'a.*', array('a.deleted'=>'0'), "a.fullname ASC")->result();
+		$event = 'All';
+		if($this->input->post('event')!='All'){
+			$event = $this->input->post('event');
+		}else{
+			echo'';
+		}
+		$data['event'] = $event;
 		$this->load->view('admin/template/header',$data);
 		$this->load->view('admin/master/administrator_data',$data);
 		$this->load->view('admin/template/footer');
@@ -136,41 +136,67 @@ class Master extends CI_Controller {
 		$no = 1;
 		foreach ($data as $key => $value) {
 			if($value['roleUser']=='1019ce17-9c80-4beb-8e61-d064fb872cea'){
-				$isi['checkbox'] =	'
-									<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-										<input type="checkbox" class="checkboxes" name="selected_id[]" value="'.$value['idUserDatas'].'"/>
-										<span></span>
-									</label>
+				if($this->input->post('event')=='All'){
+					$isi['number'] = $no++.'.';
+					$isi['nama'] = $value['namaUser'];
+					$isi['hp'] = $value['telepon'];
+					if($value['idEvent']==NULL){
+						$isi['event'] = '-';
+					}else{
+						$url2 = 'http://kertasfolio.id:99/api/event/id/'.$value['idEvent'];
+						$data_e = $this->Main_model->getAPI($url2);
+						$isi['event'] = $data_e['namaEvent'];
+					}
+					$return_on_click = "return confirm('Anda yakin?')";
+					$isi['action'] =	'
+									<div class="dropdown">
+										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+											<i class="fa fa-angle-down"></i>
+										</button>
+										<ul class="dropdown-menu pull-right" role="menu">
+											<li>
+												<a href="'.site_url('admin_side/ubah_data_pengguna/'.$value['idUserDatas']).'">
+													<i class="icon-wrench"></i> Ubah Data </a>
+											</li>
+											<li>
+												<a onclick="'.$return_on_click.'" href="'.site_url('admin_side/hapus_data_pengguna/'.$value['idUserDatas']).'">
+													<i class="icon-trash"></i> Hapus Data </a>
+											</li>
+										</ul>
+									</div>
 									';
-				$isi['number'] = $no++.'.';
-				$isi['nama'] = $value['namaUser'];
-				$isi['hp'] = $value['telepon'];
-				if($value['idEvent']==NULL){
-					$isi['event'] = '-';
+					$data_tampil[] = $isi;
 				}else{
-					$url2 = 'http://kertasfolio.id:99/api/event/id/'.$value['idEvent'];
-					$data_e = $this->Main_model->getAPI($url2);
-					$isi['event'] = $data_e['namaEvent'];
+					if($value['idEvent']==$this->input->post('event')){
+						$isi['number'] = $no++.'.';
+						$isi['nama'] = $value['namaUser'];
+						$isi['hp'] = $value['telepon'];
+						$url2 = 'http://kertasfolio.id:99/api/event/id/'.$value['idEvent'];
+						$data_e = $this->Main_model->getAPI($url2);
+						$isi['event'] = $data_e['namaEvent'];
+						$return_on_click = "return confirm('Anda yakin?')";
+						$isi['action'] =	'
+										<div class="dropdown">
+											<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+												<i class="fa fa-angle-down"></i>
+											</button>
+											<ul class="dropdown-menu pull-right" role="menu">
+												<li>
+													<a href="'.site_url('admin_side/ubah_data_pengguna/'.$value['idUserDatas']).'">
+														<i class="icon-wrench"></i> Ubah Data </a>
+												</li>
+												<li>
+													<a onclick="'.$return_on_click.'" href="'.site_url('admin_side/hapus_data_pengguna/'.$value['idUserDatas']).'">
+														<i class="icon-trash"></i> Hapus Data </a>
+												</li>
+											</ul>
+										</div>
+										';
+						$data_tampil[] = $isi;
+					}else{
+						echo'';
+					}
 				}
-				$return_on_click = "return confirm('Anda yakin?')";
-				$isi['action'] =	'
-								<div class="dropdown">
-									<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
-										<i class="fa fa-angle-down"></i>
-									</button>
-									<ul class="dropdown-menu pull-right" role="menu">
-										<li>
-											<a href="'.site_url('admin_side/ubah_data_pengguna/'.$value['idUserDatas']).'">
-												<i class="icon-wrench"></i> Ubah Data </a>
-										</li>
-										<li>
-											<a onclick="'.$return_on_click.'" href="'.site_url('admin_side/hapus_data_pengguna/'.$value['idUserDatas']).'">
-												<i class="icon-trash"></i> Hapus Data </a>
-										</li>
-									</ul>
-								</div>
-								';
-			$data_tampil[] = $isi;
 			}else{
 				echo'';
 			}

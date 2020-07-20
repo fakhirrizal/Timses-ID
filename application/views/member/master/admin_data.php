@@ -16,26 +16,11 @@
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
-		<!-- <p> Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p> -->
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
-					<!-- <div class="form-group select2-bootstrap-prepend" >
-						<label class="control-label col-md-2">Opsi pencarian berdasarkan <b>Status</b></label>
-						<div class="col-md-5">
-							<select id='pilihan' class="form-control select2-allow-clear">
-								<option value=""></option>
-								<option value="2">Pendaftaran</option>
-								<option value="0">Sedang Berlangsung</option>
-								<option value="19">Tutup</option>
-							</select>
-						</div>
-					</div>
-					<br>
-					<hr> -->
 					<form action="#" method="post" onsubmit="return deleteConfirm();"/>
 					<div class="table-toolbar">
 						<div class="row">
@@ -45,11 +30,8 @@
 										<i class="fa fa-trash"></i>
 									</button>
 								</div>
-									<span class="separator">|</span>
-									<a href="<?=base_url('member_side/tambah_data_admin');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
-								<!-- <button id="sample_editable_1_new" onclick="window.location.href='<?=base_url('Master/admin');?>'" class="btn sbold green"> Tambah Data Baru
-									<i class="fa fa-plus"></i>
-								</button> -->
+								<span class="separator">|</span>
+								<a href="<?=base_url('member_side/tambah_data_admin');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
 							</div>
 						</div>
 					</div>
@@ -102,7 +84,6 @@
 					</script>
 				</div>
 			</div>
-			<!-- END EXAMPLE TABLE PORTLET-->
 		</div>
 	</div>
 </div>

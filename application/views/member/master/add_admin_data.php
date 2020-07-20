@@ -57,7 +57,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<form role="form" class="form-horizontal" action="<?=base_url('member_side/simpan_data_admin');?>" method="post"  enctype='multipart/form-data'>
@@ -145,35 +144,6 @@
 								</div>
 							</div>
 							<hr>
-							<!-- <div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Tingkat Wilayah Pilkada <span class="required"> * </span></label>
-								<div class="col-md-10">
-									<div class="input-icon">
-										<select name='tingkat' id='tingkat' class="form-control select2-allow-clear" required>
-											<option value=''>-- Pilih --</option>
-											<option value='1'>Provinsi</option>
-											<option value='2'>Kabupapten/ Kota</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Provinsi <span class="required"> * </span></label>
-								<div class="col-md-10">
-									<div class="input-icon">
-										<select name='provinsi' id='provinsi' class="form-control select2-allow-clear" required>
-											<option value=''>-- Pilih --</option>
-											<?php
-											foreach ($prov as $key => $value) {
-												echo'<option value="'.$value->id_provinsi.'">'.$value->nm_provinsi.'</option>';
-											}
-											?>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div id='tampil_kabkot'>
-							</div> -->
 						</div>
 						<br>
 						<div class="form-actions margin-top-10">
@@ -187,7 +157,6 @@
 					</form>
 				</div>
 			</div>
-			<!-- END EXAMPLE TABLE PORTLET-->
 		</div>
 	</div>
 </div>

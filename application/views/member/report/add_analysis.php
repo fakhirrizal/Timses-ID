@@ -1,13 +1,11 @@
 <script src="<?=base_url('assets/global/plugins/jquery.min.js');?>" type="text/javascript"></script>
 <script type="text/javascript">
 	$(function(){
-
 		$.ajaxSetup({
 			type:"POST",
 			url: "<?php echo site_url('/member/Master/ajax_function')?>",
 			cache: false,
 		});
-
 		$("#id_kube").change(function(){
 			var value=$(this).val();
 			$.ajax({
@@ -17,7 +15,6 @@
 				}
 			})
 		});
-
 		$("#id_kube").change(function(){
 			var value=$(this).val();
 			$.ajax({
@@ -27,19 +24,7 @@
 				}
 			})
 		});
-
-		// $("#id_indikator").change(function(){
-		// 	var value=$(this).val();
-		// 	$.ajax({
-		// 		data:{id:value,modul:'get_indikator_by_tipe'},
-		// 		success: function(respond){
-		// 			$("#indikator").html(respond);
-		// 		}
-		// 	})
-		// });
-
 	})
-
 </script>
 <ul class="page-breadcrumb breadcrumb">
 	<li>
@@ -135,19 +120,16 @@
 		rupiah.addEventListener("keyup", function(e) {
 			rupiah.value = formatRupiah(this.value, "Rp. ");
 		});
-
 		function formatRupiah(angka, prefix) {
 			var number_string = angka.replace(/[^,\d]/g, "").toString(),
 				split = number_string.split(","),
 				sisa = split[0].length % 3,
 				rupiah = split[0].substr(0, sisa),
 				ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
 			if (ribuan) {
 				separator = sisa ? "." : "";
 				rupiah += separator + ribuan.join(".");
 			}
-
 			rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
 			return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
 		}

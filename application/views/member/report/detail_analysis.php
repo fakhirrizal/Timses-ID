@@ -17,67 +17,54 @@
 </ul>
 <?= $this->session->flashdata('sukses') ?>
 <?= $this->session->flashdata('gagal') ?>
-<?php
-$id_kube = '';
-?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
-		<!-- <p> 1. Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p>
-		<p> 2. Untuk <b>username</b> dan <b>password</b> dari anggota baru diambil dari isian <b>NIK</b>.</p> -->
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<div class='row'>
-						<?php
-						// if(isset($data_utama)){
-						// 	foreach($data_utama as $row)
-						// 	{
-						// 		$id_kube = $row->id_kube;
-						?>
-								<div class="col-md-12">
-									<table class="table">
-										<tbody>
-                                            <tr>
-												<td> Judul Analisis </td>
-												<td> : </td>
-												<td><?php echo 'Pengaruh hari kunjungan terhadap antusiasme warga'; ?></td>
-											</tr>
-                                            <tr>
-												<td> Tanggal </td>
-												<td> : </td>
-												<td><?php echo '12 Oktober 2019'; ?></td>
-											</tr>
-											<tr>
-												<td> Analisis </td>
-												<td> : </td>
-												<td><?php echo 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'; ?></td>
-											</tr>
-											<tr>
-												<td> Rekomendasi </td>
-												<td> : </td>
-												<td><?php echo 'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem.'; ?>
-													<ol>
-														<li>a</li>
-														<li>b</li>
-														<li>c</li>
-														<li>d</li>
-														<li>e</li>
-													</ol>
-												</td>
-											</tr>
-											<!-- <tr>
-												<td> </td>
-												<td> </td>
-												<td> </td>
-											</tr> -->
-										</tbody>
-									</table>
-								</div>
-						<?php // }} ?>
+						<div class="col-md-12">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td> Judul Analisis </td>
+										<td> : </td>
+										<td><?php echo 'Pengaruh hari kunjungan terhadap antusiasme warga'; ?></td>
+									</tr>
+									<tr>
+										<td> Tanggal </td>
+										<td> : </td>
+										<td><?php echo '12 Oktober 2019'; ?></td>
+									</tr>
+									<tr>
+										<td> Analisis </td>
+										<td> : </td>
+										<td><?php echo 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'; ?></td>
+									</tr>
+									<tr>
+										<td> Rekomendasi </td>
+										<td> : </td>
+										<td><?php echo 'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem.'; ?>
+											<ol>
+												<li>a</li>
+												<li>b</li>
+												<li>c</li>
+												<li>d</li>
+												<li>e</li>
+											</ol>
+										</td>
+									</tr>
+									<!-- <tr>
+										<td> </td>
+										<td> </td>
+										<td> </td>
+									</tr> -->
+								</tbody>
+							</table>
+						</div>
 						<div class="col-md-12" >
 						<hr><a href="<?php echo base_url()."member_side/analisis"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Kembali</a></div>
 					</div>
@@ -99,22 +86,3 @@ $id_kube = '';
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" language="javascript" >
-		// $(document).ready(function(){
-		// 	$('#tbl1').dataTable({
-		// 		"order": [[ 0, "asc" ]],
-		// 		"bProcessing": true,
-		// 		"ajax" : {
-		// 			url:"<?= site_url('admin/Report/json_laporan_kube'); ?>",
-		// 			data: {id: '<?= $this->uri->segment(3); ?>'}
-		// 		},
-		// 		"aoColumns": [
-		// 					{ mData: 'no', sClass: "alignCenter" },
-		// 					{ mData: 'pelapor' },
-		// 					{ mData: 'tanggal_lapor', sClass: "alignCenter" },
-		// 					{ mData: 'keterangan', sClass: "alignCenter" },
-		// 					{ mData: 'aksi' }
-		// 				]
-		// 	});
-		// });
-	</script>

@@ -21,19 +21,6 @@
 		<div class="col-md-12">
 			<div class="portlet light ">
 				<div class="portlet-body">
-					<!-- <div class="table-toolbar">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="btn-group">
-									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
-										<i class="fa fa-trash"></i>
-									</button>
-								</div>
-								<span class="separator">|</span>
-								<a href="<?=base_url('member_side/tambah_data_admin');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
-							</div>
-						</div>
-					</div> -->
 					<table class="table table-striped table-bordered table-hover " id="tbl">
 						<thead>
 							<tr>

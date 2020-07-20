@@ -22,7 +22,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<form role="form" class="form-horizontal" action="#" method="post"  enctype='multipart/form-data'>
@@ -97,7 +96,6 @@
 					</form>
 				</div>
 			</div>
-			<!-- END EXAMPLE TABLE PORTLET-->
 		</div>
 	</div>
 </div>

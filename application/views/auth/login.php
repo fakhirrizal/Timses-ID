@@ -54,7 +54,7 @@
 						<div class="input-group-prepend">
 						<span class="input-group-text"><i class="ni ni-single-02"></i></span>
 						</div>
-						<input class="form-control" placeholder="Email" type="text" name='username'>
+						<input class="form-control" placeholder="Nama Akun" type="text" name='username'>
 					</div>
 					</div>
 					<div class="form-group">

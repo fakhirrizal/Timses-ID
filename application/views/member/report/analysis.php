@@ -182,4 +182,81 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="portlet light ">
+				<div class="portlet-body">
+					<script src="https://code.highcharts.com/highcharts.js"></script>
+					<script src="https://code.highcharts.com/modules/exporting.js"></script>
+					<script src="https://code.highcharts.com/modules/export-data.js"></script>
+					<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+					<figure class="highcharts-figure">
+						<div id="grafik3"></div>
+					</figure>
+					<script>
+						Highcharts.chart('grafik3', {
+							chart: {
+								type: 'column'
+							},
+							credits: {
+								enabled: false
+							},
+							title: {
+								text: 'Total Relawan Rekrutmen'
+							},
+							subtitle: {
+								text: 'Rekapan per daerah'
+							},
+							xAxis: {
+								type: 'category',
+								labels: {
+									rotation: -45,
+									style: {
+										fontSize: '13px',
+										fontFamily: 'Verdana, sans-serif'
+									}
+								}
+							},
+							yAxis: {
+								min: 0,
+								title: {
+									text: ''
+								}
+							},
+							legend: {
+								enabled: false
+							},
+							tooltip: {
+								pointFormat: 'Jumlah rekrutmen: <b>{point.y:.0f} orang</b>'
+							},
+							series: [{
+								name: 'Population',
+								data: [
+									<?php
+									foreach ($wilayah as $key => $value) {
+										$url1 = 'http://kertasfolio.id:99/api/rekrutmen/kec/'.$value['idKecamatan'].'/'.$get_info->id_event;
+										$data_rekrutmen = $this->Main_model->getAPI($url1);
+										echo'["'.$value['namaKecamatan'].'",'.number_format(count($data_rekrutmen),0).'],';
+									}
+									?>
+								],
+								dataLabels: {
+									enabled: true,
+									rotation: -90,
+									color: '#FFFFFF',
+									align: 'right',
+									format: '{point.y:.0f}', // number of decimal
+									y: 10, // 10 pixels down from the top
+									style: {
+										fontSize: '13px',
+										fontFamily: 'Verdana, sans-serif'
+									}
+								}
+							}]
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

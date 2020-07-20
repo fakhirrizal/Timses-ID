@@ -14,11 +14,9 @@
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
 		<p> 1. Kolom isian dengan tanda bintang (<font color='red'>*</font>) adalah wajib untuk di isi.</p>
-		<!-- <p> 2. Pastikan marker yang Anda geser sesuai dengan alamat rumah Anda.</p> -->
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<form role="form" class="form-horizontal" action="<?=base_url('member_side/perbarui_target_suara');?>" method="post"  enctype='multipart/form-data'>
@@ -68,7 +66,6 @@
 						<tbody>
 							<?php
 							$no = 1;
-							// foreach ($data_tabel as $key => $value) {
 							?>
 							<tr class="odd gradeX">
 								<td style="text-align: center;">
@@ -101,9 +98,6 @@
 									</div>
 								</td>
 							</tr>
-							<?php
-							// }
-							?>
 						</tbody>
 					</table>
 					<script type="text/javascript" language="javascript" >
@@ -114,7 +108,6 @@
 					</script>
 				</div>
 			</div>
-			<!-- END EXAMPLE TABLE PORTLET-->
 		</div>
 	</div>
 </div>

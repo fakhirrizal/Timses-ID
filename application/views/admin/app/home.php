@@ -4,7 +4,7 @@
 	<i class="fa fa-warning"></i> <strong>Selamat Datang</strong> di Aplikasi Timses ID</a>
 </div>
 <div class="page-content-inner">
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-12">
 			<div class="portlet light ">
 				<div class="portlet-title">
@@ -42,5 +42,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>

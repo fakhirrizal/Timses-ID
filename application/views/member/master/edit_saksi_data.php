@@ -63,7 +63,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<form role="form" class="form-horizontal" action="<?=base_url('member_side/perbarui_data_saksi');?>" method="post">

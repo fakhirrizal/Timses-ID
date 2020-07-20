@@ -1,4 +1,3 @@
-<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
 <script src="<?=base_url('assets/global/plugins/jquery.min.js');?>" type="text/javascript"></script>
 <script type="text/javascript">
 
@@ -62,11 +61,9 @@
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
 		<p> 1. Kolom isian dengan tanda bintang (<font color='red'>*</font>) adalah wajib untuk di isi.</p>
-		<!-- <p> 2. Pastikan marker yang Anda geser sesuai dengan alamat rumah Anda.</p> -->
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<form role="form" class="form-horizontal" action="<?=base_url('member_side/simpan_data_kube');?>" method="post"  enctype='multipart/form-data'>
@@ -120,18 +117,14 @@
 					</form>
 				</div>
 			</div>
-			<!-- END EXAMPLE TABLE PORTLET-->
 		</div>
 	</div>
 </div>
 <script>
 	var rupiah = document.getElementById("rupiah");
 	rupiah.addEventListener("keyup", function(e) {
-		// tambahkan 'Rp.' pada saat form di ketik
-		// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
 		rupiah.value = formatRupiah(this.value, "Rp. ");
 	});
-
 	/* Fungsi formatRupiah */
 	function formatRupiah(angka, prefix) {
 		var number_string = angka.replace(/[^,\d]/g, "").toString(),
@@ -139,13 +132,11 @@
 			sisa = split[0].length % 3,
 			rupiah = split[0].substr(0, sisa),
 			ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
 		// tambahkan titik jika yang di input sudah menjadi angka ribuan
 		if (ribuan) {
 			separator = sisa ? "." : "";
 			rupiah += separator + ribuan.join(".");
 		}
-
 		rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
 		return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
 	}
@@ -158,12 +149,11 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize&key=AIzaSyCnjlDXASsyIUKAd1QANakIHIM8jjWWyNU"></script>
 
 <script type="text/javascript">
-    //* Fungsi untuk mendapatkan nilai latitude longitude
+    // Fungsi untuk mendapatkan nilai latitude longitude
 	function updateMarkerPosition(latLng) {
 		document.getElementById('latitude').value = [latLng.lat()]
 		document.getElementById('longitude').value = [latLng.lng()]
 	}
-
 	var map = new google.maps.Map(document.getElementById('map'), {
 	zoom: 12,
 	center: new google.maps.LatLng(-6.909718326755971,109.734670017746),
@@ -171,7 +161,6 @@
 	});
 	// posisi awal marker
 	var latLng = new google.maps.LatLng(-6.909718326755971,109.734670017746);
-
 	/* buat marker yang bisa di drag lalu
 	panggil fungsi updateMarkerPosition(latLng)
 	dan letakan posisi terakhir di id=latitude dan id=longitude
@@ -182,7 +171,6 @@
 		map : map,
 		draggable : true
 	});
-
 	updateMarkerPosition(latLng);
 	google.maps.event.addListener(marker, 'drag', function() {
 	// ketika marker di drag, otomatis nilai latitude dan longitude

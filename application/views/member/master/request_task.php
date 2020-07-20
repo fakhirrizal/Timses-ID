@@ -5,53 +5,19 @@
 <ul class="page-breadcrumb breadcrumb">
 	<li>
 		<span>Data Usulan</span>
-		<!-- <i class="fa fa-circle"></i> -->
 	</li>
-	<!-- <li>
-		<span>Data Kube (Kelompok Usaha Bersama)</span>
-	</li> -->
 </ul>
 <?= $this->session->flashdata('sukses') ?>
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
-		<!-- <p> Untuk menambahkan data anggota Kube silahkan klik detil data kube-nya.</p> -->
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
-					<!-- <div class="form-group select2-bootstrap-prepend" >
-						<label class="control-label col-md-2">Opsi pencarian berdasarkan <b>Status</b></label>
-						<div class="col-md-5">
-							<select id='pilihan' class="form-control select2-allow-clear">
-								<option value=""></option>
-								<option value="2">Aktif</option>
-								<option value="2">Pending</option>
-								<option value="19">Tidak Aktif</option>
-							</select>
-						</div>
-					</div>
-					<br>
-					<hr> -->
-					<form action="#" method="post" onsubmit="return deleteConfirm();"/>
 					<div class="table-toolbar">
-						<!-- <div class="row">
-							<div class="col-md-6">
-								<div class="btn-group">
-									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
-										<i class="fa fa-trash"></i>
-									</button>
-								</div>
-									<span class="separator">|</span>
-									<a href="<?=base_url('member_side/tambah_data_kube');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
-									<button id="sample_editable_1_new" onclick="window.location.href='<?=base_url('Master/admin');?>'" class="btn sbold green"> Tambah Data Baru
-										<i class="fa fa-plus"></i>
-									</button>
-							</div>
-						</div> -->
 						<div class="row">
 							<div class="col-md-8">
 								<div class="btn-group">
@@ -59,13 +25,7 @@
 										<i class="fa fa-trash"></i>
 									</button>
 								</div>
-									<!-- <span class="separator">|</span>
-									<a href="<?=base_url('member_side/tambah_data_kube');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a> -->
 							</div>
-							<!-- <div class="col-md-4" style='text-align: right;'>
-								<a href="#" class="btn btn-info" data-toggle="modal" data-target="#fi">Impor Data <i class="fa fa-cloud-upload"></i></a>
-								<a href="<?=base_url()?>import_data_template/template_kube.xlsx" class="btn btn-warning">Unduh Template</a>
-							</div> -->
 						</div>
 					</div>
 					<table class="table table-striped table-bordered table-hover table-checkable order-column" style="overflow-x: auto;width: 120%;" id="tbl">
@@ -89,7 +49,6 @@
 						<tbody>
 							<?php
 							$no = 1;
-							// foreach ($data_tabel as $key => $value) {
 							?>
 							<tr class="odd gradeX">
 								<td style="text-align: center;">
@@ -122,22 +81,8 @@
 									</div>
 								</td>
 							</tr>
-							<?php
-							// }
-							?>
 						</tbody>
 					</table>
-					</form>
-					<script type="text/javascript">
-					function deleteConfirm(){
-						var result = confirm("Yakin akan menghapus data ini?");
-						if(result){
-							return true;
-						}else{
-							return false;
-						}
-					}
-					</script>
 				</div>
 			</div>
 		</div>

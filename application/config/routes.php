@@ -61,9 +61,7 @@ $route['registrasi'] = 'Auth/registration';
 $route['register_process'] = 'Auth/register_process';
 
 /* Admin */
-$route['admin_side/launcher'] = 'admin/App/launcher';
 $route['admin_side/beranda'] = 'admin/App/home';
-$route['admin_side/menu'] = 'admin/App/menu';
 $route['admin_side/log_activity'] = 'admin/App/log_activity';
 $route['admin_side/hapus_aktifitas/(:any)'] = 'admin/App/hapus_aktifitas/$1';
 $route['admin_side/cleaning_log'] = 'admin/App/cleaning_log';
@@ -82,7 +80,6 @@ $route['admin_side/hapus_data_pengguna/(:any)'] = 'admin/Master/delete_administr
 $route['admin_side/event'] = 'admin/Master/event_data';
 $route['admin_side/tambah_data_event'] = 'admin/Master/add_event_data';
 $route['admin_side/simpan_data_event'] = 'admin/Master/save_event_data';
-$route['admin_side/detil_data_kube/(:any)'] = 'admin/Master/detail_kube_data/$1';
 $route['admin_side/ubah_data_event/(:any)'] = 'admin/Master/edit_event_data/$1';
 $route['admin_side/perbarui_data_event'] = 'admin/Master/update_event_data';
 $route['admin_side/hapus_data_event/(:any)'] = 'admin/Master/delete_event_data/$1';
@@ -115,7 +112,6 @@ $route['admin_side/hapus_data_kelurahan/(:any)'] = 'admin/Map/delete_village/$1'
 /* Member */
 $route['member_side/launcher'] = 'member/App/launcher';
 $route['member_side/beranda'] = 'member/App/home';
-$route['member_side/menu'] = 'member/App/menu';
 $route['member_side/log_activity'] = 'member/App/log_activity';
 $route['member_side/hapus_aktifitas/(:any)'] = 'member/App/hapus_aktifitas/$1';
 $route['member_side/cleaning_log'] = 'member/App/cleaning_log';
@@ -153,7 +149,8 @@ $route['member_side/tambah_data_saksi'] = 'member/Master/add_saksi_data';
 $route['member_side/ubah_data_saksi/(:any)'] = 'member/Master/edit_saksi_data/$1';
 
 $route['member_side/target_suara'] = 'member/Master/target_suara';
-$route['member_side/target_suara_kec/(:any)'] = 'member/Master/target_suara_kecamatan/$1';
+$route['member_side/target_detail/(:any)/(:any)'] = 'member/Master/target_suara_desa/$1/$2';
+$route['member_side/target_per_desa/(:any)/(:any)'] = 'member/Master/target_per_desa/$1/$2';
 $route['member_side/ubah_target_suara'] = 'member/Master/edit_target_suara';
 $route['member_side/perbarui_target_suara'] = 'member/Master/update_target_suara';
 
@@ -205,7 +202,6 @@ $route['member_side/hapus_data_isu/(:any)'] = 'member/Report/hapus_data_isu/$1';
 /* Relawan */
 $route['relawan_side/launcher'] = 'relawan/App/launcher';
 $route['relawan_side/beranda'] = 'relawan/App/home';
-$route['relawan_side/menu'] = 'relawan/App/menu';
 $route['relawan_side/log_activity'] = 'relawan/App/log_activity';
 $route['relawan_side/hapus_aktifitas/(:any)'] = 'relawan/App/hapus_aktifitas/$1';
 $route['relawan_side/cleaning_log'] = 'relawan/App/cleaning_log';

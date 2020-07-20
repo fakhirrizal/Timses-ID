@@ -23,52 +23,43 @@ $id_relawan = '';
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
-		<!-- <p> 1. Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p>
-		<p> 2. Untuk <b>username</b> dan <b>password</b> dari anggota baru diambil dari isian <b>NIK</b>.</p> -->
 	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<div class='row'>
-						<?php
-						// if(isset($data_utama)){
-						// 	foreach($data_utama as $row)
-						// 	{
-						// 		$id_relawan = $row->id_relawan;
-						?>
-								<div class="col-md-12">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td> Nama </td>
-												<td> : </td>
-												<td><?php echo 'Imam Fajrul Falah'; ?></td>
-											</tr>
-											<tr>
-												<td> Alamat </td>
-												<td> : </td>
-												<td><?php echo 'Jln. dr. Cipto 61, Proyonanggan Tengah, Batang 51211'; ?></td>
-											</tr>
-											<tr>
-												<td> No. Hp </td>
-												<td> : </td>
-												<td><?php echo '085696303627';; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td> Email </td>
-												<td> : </td>
-												<td><?php echo 'imam@gmail.com'; ?></td>
-											</tr>
-											<tr>
-												<td> </td>
-												<td> </td>
-												<td> </td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-						<?php // }} ?>
+						<div class="col-md-12">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td> Nama </td>
+										<td> : </td>
+										<td><?php echo 'Imam Fajrul Falah'; ?></td>
+									</tr>
+									<tr>
+										<td> Alamat </td>
+										<td> : </td>
+										<td><?php echo 'Jln. dr. Cipto 61, Proyonanggan Tengah, Batang 51211'; ?></td>
+									</tr>
+									<tr>
+										<td> No. Hp </td>
+										<td> : </td>
+										<td><?php echo '085696303627';; ?></td>
+									</tr>
+									<tr>
+										<td> Email </td>
+										<td> : </td>
+										<td><?php echo 'imam@gmail.com'; ?></td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td> </td>
+										<td> </td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<div class="col-md-12" >
 							<div class="tabbable-line">
 								<ul class="nav nav-tabs ">
@@ -108,7 +99,6 @@ $id_relawan = '';
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                    <!-- <h4 class="modal-title" id="myModalLabel">Packet Data Detail</h4> -->
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="box box-primary" id='formdetaildata' style="text-align: center;">
@@ -143,7 +133,6 @@ $id_relawan = '';
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                    <!-- <h4 class="modal-title" id="myModalLabel">Packet Data Detail</h4> -->
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="box box-primary" id='formdetaildata' style="text-align: center;">
@@ -264,36 +253,3 @@ $id_relawan = '';
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" language="javascript" >
-		// $(document).ready(function(){
-		// 	$('#tbl1').dataTable({
-		// 		"order": [[ 0, "asc" ]],
-		// 		"bProcessing": true,
-		// 		"ajax" : {
-		// 			url:"<?= site_url('admin/Master/json_anggota_relawan'); ?>",
-		// 			data: {id: '<?= $this->uri->segment(3); ?>'}
-		// 		},
-		// 		"aoColumns": [
-		// 					{ mData: 'number', sClass: "alignCenter" },
-		// 					{ mData: 'nama' },
-		// 					{ mData: 'nik', sClass: "alignCenter" },
-		// 					{ mData: 'jabatan', sClass: "alignCenter" },
-		// 					{ mData: 'no_kk', sClass: "alignCenter" } ,
-		// 					{ mData: 'action' }
-		// 				]
-		// 	});
-		// 	$('#tbl1').on('click','.ubahdata',function(){
-		// 		var id = $(this).attr("id");
-		// 		var modul = 'modul_ubah_data_anggota_relawan';
-		// 		$.ajax({
-		// 			type:"POST",
-		// 			url:"<?= site_url('admin/Master/ajax_function'); ?>",
-		// 			data: {id:id,modul:modul},
-		// 			success:function(data){
-		// 			$('#formubahdata').html(data);
-		// 			$('#ubahdata').modal("show");
-		// 			}
-		// 		});
-		// 	});
-		// });
-	</script>
