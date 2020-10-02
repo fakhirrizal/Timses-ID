@@ -119,10 +119,10 @@ class Master extends CI_Controller {
 		$data['child'] = 'user';
 		$data['grand_child'] = '';
 		$event = 'All';
-		if($this->input->post('event')!='All'){
+		if($this->input->post('event')!=NULL){
 			$event = $this->input->post('event');
 		}else{
-			echo'';
+			$event = 'All';
 		}
 		$data['event'] = $event;
 		$this->load->view('admin/template/header',$data);
@@ -224,17 +224,20 @@ class Master extends CI_Controller {
 			$user_id = $this->Main_model->getLastID('user','id');
 			$url_insert = 'http://kertasfolio.id:99/api/userdatas/register';
 			$data_insert = array(
+				"idUserDatas"=> $user_id['id']+1,
 				"idEvent"=> $this->input->post('event'),
+				"idWilayah"=> $this->input->post('wilayah'),
 				"username"=> $this->input->post('username'),
 				"password"=> $this->input->post('pass'),
 				"telepon"=> $this->input->post('no_hp'),
 				"namaUser"=> $this->input->post('nama'),
 				"roleEvent"=> $this->input->post('role'),
 				"roleUser"=> '1019ce17-9c80-4beb-8e61-d064fb872cea',
+				"isActive"=> true,
 				'keterangan' => $user_id['id']+1,
 				'createdDate'=> date("Y-m-d").'T05:39:56.757Z'
 			);
-			print_r($data_insert);
+			// print_r($data_insert);
 			$this->db->trans_start();
 			$data1 = array(
 						'id' => $user_id['id']+1,
