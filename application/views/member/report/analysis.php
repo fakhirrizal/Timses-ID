@@ -67,10 +67,10 @@
 									<?php
 									foreach ($wilayah as $key => $value) {
 										$tot_relawan = 0;
-										$url1 = 'http://kertasfolio.id:99/api/relawandatas/byevent/'.$get_info->id_event;
+										$url1 = 'http://pradi.is-very-good.org:7733/api/relawandatas/byevent/'.$get_info->id_event;
 										$data_relawan = $this->Main_model->getAPI($url1);
 										foreach ($data_relawan as $key => $row) {
-											$url2 = 'http://kertasfolio.id:99/api/relawanprofiles/getProfile/'.$row['idRelawan'];
+											$url2 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getProfile/'.$row['idRelawan'];
 											$cek = $this->Main_model->getAPI($url2);
 											if($cek['idKecamatan']==$value['idKecamatan']){
 												$tot_relawan++;
@@ -150,7 +150,7 @@
 									<?php
 									foreach ($wilayah as $key => $value) {
 										$tot_isu = 0;
-										$url1 = 'http://kertasfolio.id:99/api/relawanisu/all/'.$get_info->id_event;
+										$url1 = 'http://pradi.is-very-good.org:7733/api/relawanisu/all/'.$get_info->id_event;
 										$data_isu = $this->Main_model->getAPI($url1);
 										foreach ($data_isu as $key => $row) {
 											if(preg_match("/".$value['idKecamatan']."/i", $row['idWilayah'])){
@@ -234,7 +234,7 @@
 								data: [
 									<?php
 									foreach ($wilayah as $key => $value) {
-										$url1 = 'http://kertasfolio.id:99/api/rekrutmen/kec/'.$value['idKecamatan'].'/'.$get_info->id_event;
+										$url1 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/kec/'.$value['idKecamatan'].'/'.$get_info->id_event;
 										$data_rekrutmen = $this->Main_model->getAPI($url1);
 										echo'["'.$value['namaKecamatan'].'",'.number_format(count($data_rekrutmen),0).'],';
 									}

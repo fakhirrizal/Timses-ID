@@ -62,7 +62,7 @@ class Report extends CI_Controller {
         $data['child'] = '';
         $data['grand_child'] = '';
         $get_info = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
-        $url1 = 'http://kertasfolio.id:99/api/kec/kab/'.$get_info->wilayah;
+        $url1 = 'http://pradi.is-very-good.org:7733/api/kec/kab/'.$get_info->wilayah;
         $data['wilayah'] = $this->Main_model->getAPI($url1);
         $data['get_info'] = $get_info;
         $this->load->view('member/template/header',$data);
@@ -95,7 +95,7 @@ class Report extends CI_Controller {
     }
     public function json_issue_data(){
 		$get_info = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
-		$url1 = 'http://kertasfolio.id:99/api/relawanisu/all/'.$get_info->id_event;
+		$url1 = 'http://pradi.is-very-good.org:7733/api/relawanisu/all/'.$get_info->id_event;
 		$data = $this->Main_model->getAPI($url1);
 		$data_tampil = array();
 		$no = 1;
@@ -103,21 +103,21 @@ class Report extends CI_Controller {
             $isi['number'] = $no++.'.';
             $isi['judul'] = $value['judul'];
             $isi['desc'] = $value['deskripsi'];
-            $url2 = 'http://kertasfolio.id:99/api/relawanprofiles/getProfile/'.$value['idRelawan'];
+            $url2 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getProfile/'.$value['idRelawan'];
             $data_relawan = $this->Main_model->getAPI($url2);
             $isi['nama'] = $data_relawan['namaRelawan'];
             $isi['date'] = $this->Main_model->convert_tanggal(substr($value['createdDate'],0,10));
             $wilayah = '';
             if(strlen($value['idWilayah'])=='2'){
-                $url2 = 'http://kertasfolio.id:99/api/prov/id/'.$value['idWilayah'];
+                $url2 = 'http://pradi.is-very-good.org:7733/api/prov/id/'.$value['idWilayah'];
                 $data_prov = $this->Main_model->getAPI($url2);
                 $wilayah = $data_prov['namaProvinsi'];
             }elseif(strlen($value['idWilayah'])=='4'){
-                $url2 = 'http://kertasfolio.id:99/api/kab/id/'.$value['idWilayah'];
+                $url2 = 'http://pradi.is-very-good.org:7733/api/kab/id/'.$value['idWilayah'];
                 $data_kab = $this->Main_model->getAPI($url2);
                 $wilayah = $data_kab['namaKabupaten'];
             }elseif(strlen($value['idWilayah'])=='7'){
-                $url2 = 'http://kertasfolio.id:99/api/kec/id/'.$value['idWilayah'];
+                $url2 = 'http://pradi.is-very-good.org:7733/api/kec/id/'.$value['idWilayah'];
                 $data_kab = $this->Main_model->getAPI($url2);
                 $wilayah = $data_kab['namaKecamatan'];
             }else{
@@ -151,7 +151,7 @@ class Report extends CI_Controller {
     public function hapus_data_isu(){
 		$this->db->trans_start();
 		$where = $this->uri->segment(3);
-		$url1 = 'http://kertasfolio.id:99/api/relawanisu/delete/'.$where;
+		$url1 = 'http://pradi.is-very-good.org:7733/api/relawanisu/delete/'.$where;
 		$this->Main_model->deleteAPI($url1);
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
@@ -167,7 +167,7 @@ class Report extends CI_Controller {
     public function ajax_function(){
         if($this->input->post('modul')=='get_kabupaten_by_id_provinsi'){
             echo'<option value="">-- Pilih Kabupaten/ Kota --</option>';
-            $url_k = 'http://kertasfolio.id:99/api/kab/prov/'.$this->input->post('id');
+            $url_k = 'http://pradi.is-very-good.org:7733/api/kab/prov/'.$this->input->post('id');
             $data_k = $this->Main_model->getAPI($url_k);
             foreach ($data_k as $key => $value) {
                 echo'<option value="'.$value['idKabupaten'].'">'.$value['namaKabupaten'].'</option>';

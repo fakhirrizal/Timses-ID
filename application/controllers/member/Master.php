@@ -17,7 +17,7 @@ class Master extends CI_Controller {
 	public function json_target_suara(){
 		$get_info = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
 		if($get_info->keterangan=='PILKADA KAB/KOTA'){
-			$url1 = 'http://kertasfolio.id:99/api/kec/kab/'.$get_info->wilayah;
+			$url1 = 'http://pradi.is-very-good.org:7733/api/kec/kab/'.$get_info->wilayah;
 			$data = $this->Main_model->getAPI($url1);
 		}else{
 			echo'';
@@ -36,10 +36,10 @@ class Master extends CI_Controller {
 				$target_relawan += $t->relawan;
 				$target_rekrutmen += $t->rekrutmen;
 			}
-			$url2 = 'http://kertasfolio.id:99/api/relawandatas/byevent/'.$get_info->id_event;
+			$url2 = 'http://pradi.is-very-good.org:7733/api/relawandatas/byevent/'.$get_info->id_event;
 			$data_relawan = $this->Main_model->getAPI($url2);
 			foreach ($data_relawan as $key => $d) {
-				$url3 = 'http://kertasfolio.id:99/api/relawanprofiles/getProfile/'.$d['idRelawan'];
+				$url3 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getProfile/'.$d['idRelawan'];
 				$data_relawan_detail = $this->Main_model->getAPI($url3);
 				if($data_relawan_detail['idKecamatan']==$value['idKecamatan']){
 					$relawan++;
@@ -47,7 +47,7 @@ class Master extends CI_Controller {
 					echo'';
 				}
 			}
-			$url4 = 'http://kertasfolio.id:99/api/rekrutmen/kec/'.$value['idKecamatan'].'/'.$get_info->id_event;
+			$url4 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/kec/'.$value['idKecamatan'].'/'.$get_info->id_event;
 			$data_rekrutmen = $this->Main_model->getAPI($url4);
 			$isi['relawan'] = number_format($target_relawan,0).' / '.number_format($relawan,0);
 			$isi['rekrutmen'] = number_format($target_rekrutmen,0).' / '.number_format(count($data_rekrutmen),0);
@@ -77,14 +77,14 @@ class Master extends CI_Controller {
 		$data['parent'] = 'master';
 		$data['child'] = 'target_suara';
 		$data['grand_child'] = '';
-		$url1 = 'http://kertasfolio.id:99/api/kec/id/'.$this->uri->segment(3);
+		$url1 = 'http://pradi.is-very-good.org:7733/api/kec/id/'.$this->uri->segment(3);
 		$data['datakecamatan'] = $this->Main_model->getAPI($url1);
 		$this->load->view('member/template/header',$data);
 		$this->load->view('member/master/target_per_desa',$data);
 		$this->load->view('member/template/footer');
 	}
 	public function json_target_suara_per_desa(){
-		$url1 = 'http://kertasfolio.id:99/api/desa/kec/'.$this->input->post('id_kecamatan');
+		$url1 = 'http://pradi.is-very-good.org:7733/api/desa/kec/'.$this->input->post('id_kecamatan');
 		$data = $this->Main_model->getAPI($url1);
 		$data_tampil = array();
 		$no = 1;
@@ -93,10 +93,10 @@ class Master extends CI_Controller {
 			$isi['number'] = $no++.'.';
 			$isi['nama'] = $value['namaDesa'];
 			$get_target = $this->Main_model->getSelectedData('data_target a', 'a.*', array('a.id_event'=>$this->input->post('id_event'),'a.id_desa'=>$value['idDesa']))->row();
-			$url2 = 'http://kertasfolio.id:99/api/relawandatas/byevent/'.$this->input->post('id_event');
+			$url2 = 'http://pradi.is-very-good.org:7733/api/relawandatas/byevent/'.$this->input->post('id_event');
 			$data_relawan = $this->Main_model->getAPI($url2);
 			foreach ($data_relawan as $key => $d) {
-				$url3 = 'http://kertasfolio.id:99/api/relawanprofiles/getProfile/'.$d['idRelawan'];
+				$url3 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getProfile/'.$d['idRelawan'];
 				$data_relawan_detail = $this->Main_model->getAPI($url3);
 				if($data_relawan_detail['idDesa']==$value['idDesa']){
 					$relawan++;
@@ -104,7 +104,7 @@ class Master extends CI_Controller {
 					echo'';
 				}
 			}
-			$url4 = 'http://kertasfolio.id:99/api/rekrutmen/desa/'.$value['idDesa'].'/'.$this->input->post('id_event');
+			$url4 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/desa/'.$value['idDesa'].'/'.$this->input->post('id_event');
 			$data_rekrutmen = $this->Main_model->getAPI($url4);
 			$isi['relawan'] = number_format($get_target->relawan,0).' / '.number_format($relawan,0);
 			$isi['rekrutmen'] = number_format($get_target->rekrutmen,0).' / '.number_format(count($data_rekrutmen),0);
@@ -140,11 +140,11 @@ class Master extends CI_Controller {
 		$data['grand_child'] = '';
 		$data['id_event'] = $this->uri->segment(4);
 		$data['id_desa'] = $this->uri->segment(3);
-		$url1 = 'http://kertasfolio.id:99/api/desa/id/'.$this->uri->segment(3);
+		$url1 = 'http://pradi.is-very-good.org:7733/api/desa/id/'.$this->uri->segment(3);
 		$data['data_desa'] = $this->Main_model->getAPI($url1);
-		$url2 = 'http://kertasfolio.id:99/api/relawandatas/byevent/'.$this->uri->segment(4);
+		$url2 = 'http://pradi.is-very-good.org:7733/api/relawandatas/byevent/'.$this->uri->segment(4);
 		$data['data_relawan'] = $this->Main_model->getAPI($url2);
-		$url3 = 'http://kertasfolio.id:99/api/rekrutmen/desa/'.$this->uri->segment(3).'/'.$this->uri->segment(4);
+		$url3 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/desa/'.$this->uri->segment(3).'/'.$this->uri->segment(4);
 		$data['data_rekrutmen'] = $this->Main_model->getAPI($url3);
 		$this->load->view('member/template/header',$data);
 		$this->load->view('member/master/target_suara_desa',$data);
@@ -203,7 +203,7 @@ class Master extends CI_Controller {
 	}
 	public function json_admin_data(){
 		$get_info = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
-		$url1 = 'http://kertasfolio.id:99/api/userdatas/event/'.$get_info->id_event;
+		$url1 = 'http://pradi.is-very-good.org:7733/api/userdatas/event/'.$get_info->id_event;
 		$data = $this->Main_model->getAPI($url1);
 		$data_tampil = array();
 		$no = 1;
@@ -236,15 +236,15 @@ class Master extends CI_Controller {
 				$isi['keterangan'] = $role;
 				$wilayah = '';
 				if(strlen($value['idWilayah'])=='2'){
-					$url2 = 'http://kertasfolio.id:99/api/prov/id/'.$value['idWilayah'];
+					$url2 = 'http://pradi.is-very-good.org:7733/api/prov/id/'.$value['idWilayah'];
 					$data_prov = $this->Main_model->getAPI($url2);
 					$wilayah = $data_prov['namaProvinsi'];
 				}elseif(strlen($value['idWilayah'])=='4'){
-					$url2 = 'http://kertasfolio.id:99/api/kab/id/'.$value['idWilayah'];
+					$url2 = 'http://pradi.is-very-good.org:7733/api/kab/id/'.$value['idWilayah'];
 					$data_kab = $this->Main_model->getAPI($url2);
 					$wilayah = $data_kab['namaKabupaten'];
 				}elseif(strlen($value['idWilayah'])=='7'){
-					$url2 = 'http://kertasfolio.id:99/api/kec/id/'.$value['idWilayah'];
+					$url2 = 'http://pradi.is-very-good.org:7733/api/kec/id/'.$value['idWilayah'];
 					$data_kab = $this->Main_model->getAPI($url2);
 					$wilayah = $data_kab['namaKecamatan'];
 				}else{
@@ -319,11 +319,12 @@ class Master extends CI_Controller {
 				$ket = 'ADMIN KECAMATAN';
 				$role_id = '4';
 			}else{echo'';}
-			$url_insert = 'http://kertasfolio.id:99/api/userdatas/register';
+			$url_insert = 'http://pradi.is-very-good.org:7733/api/userdatas/register';
 			
 			$this->db->trans_start();
 			$user_id = $this->Main_model->getLastID('user','id');
 			$data_insert = array(
+				"idUserDatas"=> $user_id['id']+1,
 				"idEvent"=> $this->input->post('id_event'),
 				"idWilayah"=> $this->input->post('wilayah'),
 				"username"=> $this->input->post('username'),
@@ -332,6 +333,7 @@ class Master extends CI_Controller {
 				"namaUser"=> $this->input->post('nama'),
 				"roleEvent"=> $this->input->post('role'),
 				"roleUser"=> $r_u,
+				"isActive"=> true,
 				"keterangan"=> $user_id['id']+1,
 				'createdDate'=> date("Y-m-d").'T05:39:56.757Z'
 			);
@@ -386,7 +388,7 @@ class Master extends CI_Controller {
 		$data['parent'] = 'master';
 		$data['child'] = 'admin';
 		$data['grand_child'] = '';
-		$url = 'http://kertasfolio.id:99/api/userdatas/user/'.$this->uri->segment(3);
+		$url = 'http://pradi.is-very-good.org:7733/api/userdatas/user/'.$this->uri->segment(3);
 		$data_user = $this->Main_model->getAPI($url);
 		$data['data_from_db'] = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$data_user['keterangan']))->row();
 		$data['data_user'] = $data_user;
@@ -395,7 +397,7 @@ class Master extends CI_Controller {
 		$this->load->view('member/template/footer');
 	}
 	public function update_admin_data(){
-		$url_insert = 'http://kertasfolio.id:99/api/userdatas/update';
+		$url_insert = 'http://pradi.is-very-good.org:7733/api/userdatas/update';
 		if($this->input->post('pass')=='' OR $this->input->post('pass')==NULL){
 			$data_insert = array(
 				"idUserDatas"=> $this->input->post('iduser'),
@@ -448,9 +450,9 @@ class Master extends CI_Controller {
 	public function delete_admin_data(){
 		$this->db->trans_start();
 		$where = $this->uri->segment(3);
-		$url2 = 'http://kertasfolio.id:99/api/userdatas/user/'.$where;
+		$url2 = 'http://pradi.is-very-good.org:7733/api/userdatas/user/'.$where;
 		$getuserdata = $this->Main_model->getAPI($url2);
-		$url1 = 'http://kertasfolio.id:99/api/userdatas/delete?idUser='.$where.'&email='.$getuserdata['username'];
+		$url1 = 'http://pradi.is-very-good.org:7733/api/userdatas/delete/'.$where.'/'.$getuserdata['username'];
 		$this->Main_model->deleteAPI($url1);
 		$this->Main_model->deleteData('user',array('id'=>$getuserdata['keterangan']));
 		$this->Main_model->deleteData('user_profile',array('user_id'=>$getuserdata['keterangan']));
@@ -477,7 +479,7 @@ class Master extends CI_Controller {
 	}
 	public function json_relawan_data(){
 		$get_info = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
-		$url1 = 'http://kertasfolio.id:99/api/relawandatas/byevent/'.$get_info->id_event;
+		$url1 = 'http://pradi.is-very-good.org:7733/api/relawandatas/byevent/'.$get_info->id_event;
 		$data = $this->Main_model->getAPI($url1);
 		$data_tampil = array();
 		$no = 1;
@@ -489,16 +491,16 @@ class Master extends CI_Controller {
 								</label>
 								';
 			$isi['number'] = $no++.'.';
-			$url2 = 'http://kertasfolio.id:99/api/relawanprofiles/getProfile/'.$value['idRelawan'];
+			$url2 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getProfile/'.$value['idRelawan'];
 			$data_r = $this->Main_model->getAPI($url2);
 			$isi['nama'] = $data_r['namaRelawan'];
 			$isi['nik'] = $data_r['NIK'];
 			$isi['no_hp'] = $value['telepon'];
 			$isi['pekerjaan'] = $data_r['pekerjaan'];
 			
-			$url5 = 'http://kertasfolio.id:99/api/kec/id/'.$data_r['idKecamatan'];
+			$url5 = 'http://pradi.is-very-good.org:7733/api/kec/id/'.$data_r['idKecamatan'];
 			$data_kec = $this->Main_model->getAPI($url5);
-			$url6 = 'http://kertasfolio.id:99/api/desa/id/'.$data_r['idDesa'];
+			$url6 = 'http://pradi.is-very-good.org:7733/api/desa/id/'.$data_r['idDesa'];
 			$data_desa = $this->Main_model->getAPI($url6);
 			
 			$isi['wilayah'] = $data_desa['namaDesa'].', '.$data_kec['namaKecamatan'];
@@ -509,6 +511,10 @@ class Master extends CI_Controller {
 										<i class="fa fa-angle-down"></i>
 									</button>
 									<ul class="dropdown-menu pull-right" role="menu">
+										<li>
+											<a href="'.site_url('member_side/detail_data_relawan/'.$value['idRelawan']).'">
+												<i class="icon-eye"></i> Detail Data </a>
+										</li>
 										<li>
 											<a href="'.site_url('member_side/ubah_data_relawan/'.$value['idRelawan']).'">
 												<i class="icon-wrench"></i> Ubah Data </a>
@@ -540,30 +546,89 @@ class Master extends CI_Controller {
 		$this->load->view('member/template/footer');
 	}
 	public function save_relawan_data(){
-		$url_insert = 'http://kertasfolio.id:99/api/relawandatas/register';
-		$data_insert = array(
-			"idEvent"=> $this->input->post('id_event'),
-			"telepon"=> $this->input->post('no_hp'),
-			"password"=> $this->input->post('nik'),
-			"isActive"=> 'true',
-			"namaRelawan"=> $this->input->post('nama'),
-			"NIK"=> $this->input->post('nik'),
-			"pekerjaan"=> $this->input->post('pekerjaan'),
-			"idDesa"=> $this->input->post('desa'),
-			"idKecamatan"=> $this->input->post('kecamatan'),
-			"idKabupaten"=> $this->input->post('kabupaten'),
-			"idProvinsi"=> $this->input->post('provinsi'),
-			'createdDate'=> date("Y-m-d").'T05:39:56.757Z'
-		);
-		// print_r($data_insert);
-		$this->Main_model->log_activity($this->session->userdata('id'),'Inserting data',"Insert relawan data (".$this->input->post('nama').")",$this->session->userdata('location'));
-		$hasil_insert = $this->Main_model->insertAPI($url_insert,$data_insert);
-		if($hasil_insert>0){
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
-			echo "<script>window.location='".base_url()."member_side/relawan'</script>";
-		}
-		else{
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+		$cek_data = $this->Main_model->getSelectedData('user a', 'a.*', array('a.username'=>$this->input->post('no_hp')))->result();
+		if($cek_data==NULL){
+			$user_id = $this->Main_model->getLastID('user','id');
+			$url_insert1 = 'http://pradi.is-very-good.org:7733/api/userdatas/register';
+			$id = $user_id['id']+1;
+			$data_insert1 = array(
+				"idUserDatas"=> $id.random_string('alnum', 4),
+				"idEvent"=> $this->input->post('event'),
+				"idWilayah"=> $this->input->post('wilayah'),
+				"username"=> $this->input->post('username'),
+				"password"=> $this->input->post('pass'),
+				"telepon"=> $this->input->post('no_hp'),
+				"namaUser"=> $this->input->post('nama'),
+				"roleEvent"=> $this->input->post('role'),
+				"roleUser"=> 'C28A1E26-19BD-4813-9247-8333F7ED917D',
+				"isActive"=> true,
+				'keterangan' => $id,
+				'createdDate'=> date("Y-m-d").'T05:39:56.757Z'
+			);
+			// print_r($data_insert1);
+			$url_insert2 = 'http://pradi.is-very-good.org:7733/api/relawandatas/register';
+			$data_insert2 = array(
+				"idRelawan"=> $id.random_string('alnum', 4),
+				"idEvent"=> $this->input->post('id_event'),
+				"telepon"=> $this->input->post('no_hp'),
+				"password"=> $this->input->post('nik'),
+				"isActive"=> 'true',
+				"namaRelawan"=> $this->input->post('nama'),
+				"NIK"=> $this->input->post('nik'),
+				"pekerjaan"=> $this->input->post('pekerjaan'),
+				"idDesa"=> $this->input->post('desa'),
+				"idKecamatan"=> $this->input->post('kecamatan'),
+				"idKabupaten"=> $this->input->post('kabupaten'),
+				"idProvinsi"=> $this->input->post('provinsi'),
+				'createdDate'=> date("Y-m-d").'T05:39:56.757Z'
+			);
+			// print_r($data_insert2);
+			$this->db->trans_start();
+			$data1 = array(
+						'id' => $id,
+						'username' => $this->input->post('no_hp'),
+						'pass' => $this->input->post('nik'),
+						'username_api' => $this->input->post('no_hp'),
+						'password_api' => $this->input->post('nik'),
+						'total_login' => '1',
+						'is_active' => '1',
+						'created_at' => date('Y-m-d H:i:s'),
+						'created_by' => $id
+					);
+			// print_r($data1);
+			$this->Main_model->insertData('user',$data1);
+	
+			$data2 = array(
+				'user_id' => $id,
+				'fullname' => $this->input->post('nama'),
+				'nin' => $this->input->post('nik')
+			);
+			// print_r($data2);
+			$this->Main_model->insertData('user_profile',$data2);
+	
+			$data3 = array(
+				'user_id' => $id,
+				'role_id' => '5',
+				'id_event' => $this->input->post('event'),
+				'keterangan' => 'Relawan',
+				'wilayah' => $this->input->post('wilayah')
+			);
+			// print_r($data3);
+			$this->Main_model->insertData('user_to_role',$data3);
+			$this->Main_model->log_activity($this->session->userdata('id'),'Inserting data',"Insert relawan data (".$this->input->post('nama').")",$this->session->userdata('location'));
+			$this->db->trans_complete();
+			$hasil_insert = $this->Main_model->insertAPI($url_insert1,$data_insert1);
+			$hasil_insert = $this->Main_model->insertAPI($url_insert2,$data_insert2);
+			if($hasil_insert>0){
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
+				echo "<script>window.location='".base_url()."member_side/relawan/'</script>";
+			}
+			else{
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+				echo "<script>window.location='".base_url()."member_side/tambah_data_relawan/'</script>";
+			}
+		}else{
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>Username telah digunakan.<br /></div>' );
 			echo "<script>window.location='".base_url()."member_side/tambah_data_relawan/'</script>";
 		}
 	}
@@ -572,6 +637,10 @@ class Master extends CI_Controller {
 		$data['parent'] = 'master';
 		$data['child'] = 'relawan';
 		$data['grand_child'] = '';
+		$url1 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getDatas/'.$this->uri->segment(3);
+		$data['data_relawan'] = $this->Main_model->getAPI($url1);
+		$url2 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/relawan/'.$this->uri->segment(3);
+		$data['data_rekrutmen'] = $this->Main_model->getAPI($url2);
 		$this->load->view('member/template/header',$data);
 		$this->load->view('member/master/detail_relawan_data',$data);
 		$this->load->view('member/template/footer');
@@ -581,14 +650,14 @@ class Master extends CI_Controller {
 		$data['parent'] = 'master';
 		$data['child'] = 'relawan';
 		$data['grand_child'] = '';
-		$url = 'http://kertasfolio.id:99/api/relawanprofiles/getDatas/'.$id;
+		$url = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getDatas/'.$id;
 		$data['data_utama'] = $this->Main_model->getAPI($url);;
 		$this->load->view('member/template/header',$data);
 		$this->load->view('member/master/edit_relawan_data',$data);
 		$this->load->view('member/template/footer');
 	}
 	public function update_relawan_data(){
-		$url_insert = 'http://kertasfolio.id:99/api/relawanprofiles/update';
+		$url_insert = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/update';
 		$data_insert = array(
 			"idRelawan"=> $this->input->post('id_relawan'),
 			"idEvent"=> $this->input->post('id_event'),
@@ -628,9 +697,9 @@ class Master extends CI_Controller {
 	public function delete_relawan_data(){
 		$this->db->trans_start();
 		$where = $this->uri->segment(3);
-		$url2 = 'http://kertasfolio.id:99/api/relawandatas/id/'.$where;
+		$url2 = 'http://pradi.is-very-good.org:7733/api/relawandatas/id/'.$where;
 		$getuserdata = $this->Main_model->getAPI($url2);
-		$url1 = 'http://kertasfolio.id:99/api/relawandatas/delete/'.$where.'/'.$getuserdata['telepon'];
+		$url1 = 'http://pradi.is-very-good.org:7733/api/relawandatas/delete/'.$where.'/'.$getuserdata['telepon'];
 		$this->Main_model->deleteAPI($url1);
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
@@ -648,7 +717,7 @@ class Master extends CI_Controller {
 			$pecah_data = explode('/',$this->input->post('id'));
 			$data['id_event'] = $pecah_data[0];
 			$data['id_desa'] = $pecah_data[1];
-			$url1 = 'http://kertasfolio.id:99/api/desa/id/'.$pecah_data[1];
+			$url1 = 'http://pradi.is-very-good.org:7733/api/desa/id/'.$pecah_data[1];
 			$data['data_desa'] = $this->Main_model->getAPI($url1);
 			$data['data_utama'] = $this->Main_model->getSelectedData('data_target a', 'a.*', array('a.id_event'=>$pecah_data[0],'a.id_desa'=>$pecah_data[1]))->row();
 			$this->load->view('member/master/ajax_page/form_ubah_data_target',$data);
@@ -656,21 +725,21 @@ class Master extends CI_Controller {
 	}
 	public function ajax_function(){
 		if($this->input->post('modul')=='get_kabupaten_by_id_provinsi'){
-			$url1 = 'http://kertasfolio.id:99/api/kab/prov/'.$this->input->post('id');
+			$url1 = 'http://pradi.is-very-good.org:7733/api/kab/prov/'.$this->input->post('id');
 			$data = $this->Main_model->getAPI($url1);
 			foreach ($data as $key => $value) {
 				echo'<option value="'.$value['idKabupaten'].'">'.$value['namaKabupaten'].'</option>';
 			}
 		}
 		elseif($this->input->post('modul')=='get_kecamatan_by_id_kabupaten'){
-			$url1 = 'http://kertasfolio.id:99/api/kec/kab/'.$this->input->post('id');
+			$url1 = 'http://pradi.is-very-good.org:7733/api/kec/kab/'.$this->input->post('id');
 			$data = $this->Main_model->getAPI($url1);
 			foreach ($data as $key => $value) {
 				echo'<option value="'.$value['idKecamatan'].'">'.$value['namaKecamatan'].'</option>';
 			}
 		}
 		elseif($this->input->post('modul')=='get_desa_by_id_kecamatan'){
-			$url1 = 'http://kertasfolio.id:99/api/desa/kec/'.$this->input->post('id');
+			$url1 = 'http://pradi.is-very-good.org:7733/api/desa/kec/'.$this->input->post('id');
 			$data = $this->Main_model->getAPI($url1);
 			foreach ($data as $key => $value) {
 				echo'<option value="'.$value['idDesa'].'">'.$value['namaDesa'].'</option>';
@@ -678,7 +747,7 @@ class Master extends CI_Controller {
 		}
 		elseif($this->input->post('modul')=='get_wilayah_by_role_event'){
 			if($this->input->post('id')=='1a'){
-				$url1 = 'http://kertasfolio.id:99/api/prov/all/asc';
+				$url1 = 'http://pradi.is-very-good.org:7733/api/prov/all/asc';
 				$data = $this->Main_model->getAPI($url1);
 				echo'
 				<div class="form-group form-md-line-input has-danger">
@@ -697,7 +766,7 @@ class Master extends CI_Controller {
 				</div>
 				';
 			}elseif($this->input->post('id')=='2a'){
-				$url1 = 'http://kertasfolio.id:99/api/prov/all/asc';
+				$url1 = 'http://pradi.is-very-good.org:7733/api/prov/all/asc';
 				$data = $this->Main_model->getAPI($url1);
 				echo'
 				<div class="form-group form-md-line-input has-danger">
@@ -726,7 +795,7 @@ class Master extends CI_Controller {
 				</div>
 				';
 			}elseif($this->input->post('id')=='3a'){
-				$url1 = 'http://kertasfolio.id:99/api/prov/all/asc';
+				$url1 = 'http://pradi.is-very-good.org:7733/api/prov/all/asc';
 				$data = $this->Main_model->getAPI($url1);
 				echo'
 				<div class="form-group form-md-line-input has-danger">
@@ -769,7 +838,7 @@ class Master extends CI_Controller {
 				echo'<input type="hidden" name="wilayah" value="'.$data->wilayah.'"/>';
 			}elseif($this->input->post('id')=='2b'){
 				$getdata = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
-				$url1 = 'http://kertasfolio.id:99/api/kab/prov/'.$getdata->wilayah;
+				$url1 = 'http://pradi.is-very-good.org:7733/api/kab/prov/'.$getdata->wilayah;
 				$data = $this->Main_model->getAPI($url1);
 				echo'
 				<div class="form-group form-md-line-input has-danger">
@@ -789,7 +858,7 @@ class Master extends CI_Controller {
 				';
 			}elseif($this->input->post('id')=='3b'){
 				$getdata = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
-				$url1 = 'http://kertasfolio.id:99/api/kab/prov/'.$getdata->wilayah;
+				$url1 = 'http://pradi.is-very-good.org:7733/api/kab/prov/'.$getdata->wilayah;
 				$data = $this->Main_model->getAPI($url1);
 				echo'
 				<div class="form-group form-md-line-input has-danger">
@@ -822,7 +891,7 @@ class Master extends CI_Controller {
 				echo'<input type="hidden" name="wilayah" value="'.$data->wilayah.'"/>';
 			}elseif($this->input->post('id')=='3c'){
 				$getdata = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
-				$url1 = 'http://kertasfolio.id:99/api/kec/kab/'.$getdata->wilayah;
+				$url1 = 'http://pradi.is-very-good.org:7733/api/kec/kab/'.$getdata->wilayah;
 				$data = $this->Main_model->getAPI($url1);
 				echo'
 				<div class="form-group form-md-line-input has-danger">

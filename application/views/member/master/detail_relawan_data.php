@@ -19,6 +19,8 @@
 <?= $this->session->flashdata('gagal') ?>
 <?php
 $id_relawan = '';
+$url_event = 'http://pradi.is-very-good.org:7733/api/event/id/'.$data_relawan['idEvent'];
+$data_event = $this->Main_model->getAPI($url_event);
 ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
@@ -35,22 +37,47 @@ $id_relawan = '';
 									<tr>
 										<td> Nama </td>
 										<td> : </td>
-										<td><?php echo 'Imam Fajrul Falah'; ?></td>
+										<td><?php echo $data_relawan['namaRelawan']; ?></td>
 									</tr>
 									<tr>
-										<td> Alamat </td>
+										<td> Event </td>
 										<td> : </td>
-										<td><?php echo 'Jln. dr. Cipto 61, Proyonanggan Tengah, Batang 51211'; ?></td>
+										<td><?php echo $data_event['namaEvent']; ?></td>
 									</tr>
 									<tr>
 										<td> No. Hp </td>
 										<td> : </td>
-										<td><?php echo '085696303627';; ?></td>
+										<td><?php echo $data_relawan['telepon']; ?></td>
 									</tr>
 									<tr>
-										<td> Email </td>
+										<td> NIK </td>
 										<td> : </td>
-										<td><?php echo 'imam@gmail.com'; ?></td>
+										<td><?php echo $data_relawan['NIK']; ?></td>
+									</tr>
+									<tr>
+										<td> Pekerjaan </td>
+										<td> : </td>
+										<td><?php echo $data_relawan['pekerjaan']; ?></td>
+									</tr>
+									<tr>
+										<td> Desa/ Kelurahan </td>
+										<td> : </td>
+										<td><?php echo $data_relawan['desa']; ?></td>
+									</tr>
+									<tr>
+										<td> Kecamatan </td>
+										<td> : </td>
+										<td><?php echo $data_relawan['kecamatan']; ?></td>
+									</tr>
+									<tr>
+										<td> Kabupaten/ Kota </td>
+										<td> : </td>
+										<td><?php echo $data_relawan['kabupaten']; ?></td>
+									</tr>
+									<tr>
+										<td> Provinsi </td>
+										<td> : </td>
+										<td><?php echo $data_relawan['provinsi']; ?></td>
 									</tr>
 									<tr>
 										<td> </td>
@@ -66,30 +93,39 @@ $id_relawan = '';
 									<li class="active">
 										<a href="#tab_15_1" data-toggle="tab"> Daftar Rekrutmen </a>
 									</li>
-									<li>
+									<!-- <li>
 										<a href="#tab_15_2" data-toggle="tab"> Daftar Realisasi Intruksi </a>
-									</li>
+									</li> -->
 								</ul>
 								<div class="tab-content">
 									<div class="tab-pane active" id="tab_15_1">
-										<div class="table-toolbar">
+										<!-- <div class="table-toolbar">
 											<div class="row">
 												<div class="col-md-6">
 													<a data-toggle="modal" data-target="#tambahdataanggota" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
 												</div>
 											</div>
-										</div>
+										</div> -->
 										<table class="table table-striped table-bordered" id="tbl1">
 											<thead>
-												<tr>
+												<!-- <tr>
 													<th style="text-align: center;" width="4%"> # </th>
 													<th style="text-align: center;"> Nama </th>
 													<th style="text-align: center;"> NIK </th>
 													<th style="text-align: center;" width="10%"> Foto </th>
+												</tr> -->
+												<tr>
+													<th style="text-align: center;" width="4%"> # </th>
+													<th style="text-align: center;"> Nama </th>
+													<th style="text-align: center;"> No. HP </th>
+													<th style="text-align: center;"> NIK </th>
+													<th style="text-align: center;"> Pekerjaan </th>
+													<th style="text-align: center;"> Alamat </th>
+													<th style="text-align: center;"> Status </th>
 												</tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td style="text-align: center;">1.</td>
                                                     <td style="text-align: center;">Mukhammad Fakhir Rizal</td>
                                                     <td style="text-align: center;">3325111611940004</td>
@@ -108,11 +144,37 @@ $id_relawan = '';
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </tr>
+												</tr> -->
+												<?php
+												$no = 1;
+												foreach ($data_rekrutmen as $key => $value) {
+													$url5 = 'http://pradi.is-very-good.org:7733/api/kec/id/'.$value['idKecamatan'];
+													$data_kec = $this->Main_model->getAPI($url5);
+													$url6 = 'http://pradi.is-very-good.org:7733/api/desa/id/'.$value['idDesa'];
+													$data_desa = $this->Main_model->getAPI($url6);
+													$status = '';
+													if($value['isVerified']==true){
+														$status = 'Terverifikasi';
+													}else{
+														$status = 'Belum Terverifikasi';
+													}
+												?>
+													<tr class="odd gradeX">
+														<td style="text-align: center;"><?= $no++.'.'; ?></td>
+														<td style="text-align: center;"><?= $value['namaRekrutmen']; ?></td>
+														<td style="text-align: center;"><?= $value['telepon']; ?></td>
+														<td style="text-align: center;"><?= $value['NIK']; ?></td>
+														<td style="text-align: center;"><?= $value['pekerjaan']; ?></td>
+														<td style="text-align: center;"><?= $data_desa['namaDesa'].', '.$data_kec['namaKecamatan']; ?></td>
+														<td style="text-align: center;"><?= $status; ?></td>
+													</tr>
+												<?php
+												}
+												?>
                                             </tbody>
 										</table>
 									</div>
-									<div class="tab-pane" id="tab_15_2">
+									<!-- <div class="tab-pane" id="tab_15_2">
 										<table class="table table-striped table-bordered" id="tbl2">
 											<thead>
 												<tr>
@@ -145,7 +207,7 @@ $id_relawan = '';
                                                 </tr>
                                             </tbody>
 										</table>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>

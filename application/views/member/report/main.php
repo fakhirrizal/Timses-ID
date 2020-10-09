@@ -49,7 +49,7 @@
 									<select id='id_provinsi' name='id_provinsi' class="form-control" required>
 										<option value="">-- Pilih Provinsi --</option>
 										<?php
-										$url_p = 'http://kertasfolio.id:99/api/prov/all/asc/';
+										$url_p = 'http://pradi.is-very-good.org:7733/api/prov/all/asc/';
 										$data_p = $this->Main_model->getAPI($url_p);
 										foreach ($data_p as $key => $value) {
 											echo'<option value="'.$value['idProvinsi'].'">'.$value['namaProvinsi'].'</option>';

@@ -21,25 +21,25 @@ echo'
         echo '<td style="text-align: center;">'.$no++.'.'.'</td>';
         echo '<td style="text-align: center;">'.$value['judul'].'</td>';
         echo '<td style="text-align: center;">'.$value['deskripsi'].'</td>';
-        $url2 = 'http://kertasfolio.id:99/api/relawanprofiles/getProfile/'.$value['idRelawan'];
+        $url2 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getProfile/'.$value['idRelawan'];
         $data_relawan = $this->Main_model->getAPI($url2);
         echo '<td style="text-align: center;">'.$data_relawan['namaRelawan'].'</td>';
         echo '<td style="text-align: center;">'.$this->Main_model->convert_tanggal(substr($value['waktu'],0,10)).'</td>';
         $wilayah = '';
         if(strlen($value['idWilayah'])=='2'){
-            $url3 = 'http://kertasfolio.id:99/api/prov/id/'.$value['idWilayah'];
+            $url3 = 'http://pradi.is-very-good.org:7733/api/prov/id/'.$value['idWilayah'];
             $data_prov = $this->Main_model->getAPI($url3);
             $wilayah = $data_prov['namaProvinsi'];
         }elseif(strlen($value['idWilayah'])=='4'){
-            $url3 = 'http://kertasfolio.id:99/api/kab/id/'.$value['idWilayah'];
+            $url3 = 'http://pradi.is-very-good.org:7733/api/kab/id/'.$value['idWilayah'];
             $data_kab = $this->Main_model->getAPI($url3);
             $wilayah = $data_kab['namaKabupaten'];
         }elseif(strlen($value['idWilayah'])=='7'){
-            $url3 = 'http://kertasfolio.id:99/api/kec/id/'.$value['idWilayah'];
+            $url3 = 'http://pradi.is-very-good.org:7733/api/kec/id/'.$value['idWilayah'];
             $data_kab = $this->Main_model->getAPI($url3);
             $wilayah = $data_kab['namaKecamatan'];
         }elseif(strlen($value['idWilayah'])=='10'){
-            $url3 = 'http://kertasfolio.id:99/api/desa/id/'.$value['idWilayah'];
+            $url3 = 'http://pradi.is-very-good.org:7733/api/desa/id/'.$value['idWilayah'];
             $data_kab = $this->Main_model->getAPI($url3);
             $wilayah = $data_kab['namaDesa'];
         }else{

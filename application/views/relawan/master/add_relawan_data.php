@@ -123,7 +123,7 @@
 											<select id="kabupaten" name="kabupaten" class="form-control select2-allow-clear" required>
 												<option value="">-- Pilih --</option>
 											';
-											$url1 = 'http://kertasfolio.id:99/api/kab/prov/'.$get_info['idWilayahEvent'];
+											$url1 = 'http://pradi.is-very-good.org:7733/api/kab/prov/'.$get_info['idWilayahEvent'];
 											$data = $this->Main_model->getAPI($url1);
 											foreach ($data as $key => $value) {
 												echo'<option value="'.$value['idKabupaten'].'">'.$value['namaKabupaten'].'</option>';
@@ -135,7 +135,7 @@
 											<select id="kecamatan" name="kecamatan" class="form-control select2-allow-clear" required>
 												<option value="">-- Pilih --</option>
 											';
-											$url1 = 'http://kertasfolio.id:99/api/kec/kab/'.$get_info['idWilayahEvent'];
+											$url1 = 'http://pradi.is-very-good.org:7733/api/kec/kab/'.$get_info['idWilayahEvent'];
 											$data = $this->Main_model->getAPI($url1);
 											foreach ($data as $key => $value) {
 												echo'<option value="'.$value['idKecamatan'].'">'.$value['namaKecamatan'].'</option>';

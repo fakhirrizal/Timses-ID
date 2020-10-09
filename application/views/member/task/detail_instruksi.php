@@ -17,139 +17,114 @@
 		<div class="portlet-body">
             <div class='row'>
                 <?php
-                // if(isset($data_utama)){
-                //     foreach($data_utama as $value)
-                //     {
+                if(isset($data_utama)){
+                    foreach($data_utama as $value)
+                    {
+                        if($id_task_parent==$value['idTaskParent']){
                 ?>
-                    <!-- <div class="col-md-6">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td> Judul </td>
-                                    <td> : </td>
-                                    <td><?php echo $value['judulTask']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td> Deskripsi </td>
-                                    <td> : </td>
-                                    <td><?php echo $value['deskripsiTask']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td> Waktu </td>
-                                    <td> : </td>
-                                    <td><?php echo $this->Main_model->convert_tanggal(substr($value['waktuTask'],0,10)); ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td> Relawan </td>
-                                    <td> : </td>
-                                    <td><?php
-                                    $url2 = 'http://kertasfolio.id:99/api/relawanprofiles/getProfile/'.$value['idRelawan'];
-                                    $data_relawan = $this->Main_model->getAPI($url2);
-                                    echo $data_relawan['namaRelawan'];
-                                    ?></td>
-                                </tr>
-                                <tr>
-                                    <td> Wilayah </td>
-                                    <td> : </td>
-                                    <td><?php
-                                    $wilayah = '';
-                                    if(strlen($value['idWilayah'])=='2'){
-                                        $url3 = 'http://kertasfolio.id:99/api/prov/id/'.$value['idWilayah'];
-                                        $data_prov = $this->Main_model->getAPI($url3);
-                                        $wilayah = $data_prov['namaProvinsi'];
-                                    }elseif(strlen($value['idWilayah'])=='4'){
-                                        $url3 = 'http://kertasfolio.id:99/api/kab/id/'.$value['idWilayah'];
-                                        $data_kab = $this->Main_model->getAPI($url3);
-                                        $wilayah = $data_kab['namaKabupaten'];
-                                    }elseif(strlen($value['idWilayah'])=='7'){
-                                        $url3 = 'http://kertasfolio.id:99/api/kec/id/'.$value['idWilayah'];
-                                        $data_kab = $this->Main_model->getAPI($url3);
-                                        $wilayah = $data_kab['namaKecamatan'];
-                                    }elseif(strlen($value['idWilayah'])=='10'){
-                                        $url3 = 'http://kertasfolio.id:99/api/desa/id/'.$value['idWilayah'];
-                                        $data_kab = $this->Main_model->getAPI($url3);
-                                        $wilayah = $data_kab['namaDesa'];
-                                    }else{
-                                        echo'';
-                                    }
-                                    echo $wilayah;
-                                    ?></td>
-                                </tr>
-                                <tr>
-                                    <td> Status </td>
-                                    <td> : </td>
-                                    <td><?php
-                                    if($value['isDone']=='false'){
-                                        echo 'Belum Selesai';
-                                    }else{
-                                        echo 'Selesai';
-                                    }
-                                    ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> -->
-                    <?php
-                    if($value['lampiran']==null){
-                        echo'';
-                    }else{
-                    ?>
-                    <!-- <div class="col-md-12">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td> Lampiran </td>
-                                    <td>  </td>
-                                    <td><?php
-                                    foreach ($value['lampiran'] as $key => $r) {
-                                        echo '<iframe src="'.$r['urlFile'].'" width="100%" height="500px"></iframe>';
-                                    }
-                                    ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> -->
-                    <?php }
-                    $url4 = 'http://kertasfolio.id:99/api/relawanreport/task/'.$value['idTask'].'/'.$value['idEvent'];
-                    $data_laporan = $this->Main_model->getAPI($url4);
-                    if($data_laporan==NULL){
-                        echo'';
-                    }else{
-                    ?>
-                    <!-- <div class="col-md-6">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td> Foto Laporan </td>
-                                    <td>  </td>
-                                    <td><?php
-                                    echo '<img src="data:image/png;base64,' . $data_laporan['fotoReport'] . '" alt="" width="100%"/>';
-                                    ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td> Waktu Laporan </td>
-                                    <td> : </td>
-                                    <td><?php echo $this->Main_model->convert_tanggal(substr($data_laporan['createdDate'],0,10)); ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> -->
-                    <?php
-                    }
-                    ?>
-                <?php // }} ?>
+                            <div class="col-md-6">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td> Judul </td>
+                                            <td> : </td>
+                                            <td><?php echo $value['judulTask']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Deskripsi </td>
+                                            <td> : </td>
+                                            <td><?php echo $value['deskripsiTask']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td> Waktu </td>
+                                            <td> : </td>
+                                            <td><?php echo $this->Main_model->convert_tanggal(substr($value['waktuTask'],0,10)); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Wilayah </td>
+                                            <td> : </td>
+                                            <td><?php
+                                            $url2 = 'http://pradi.is-very-good.org:7733/api/relawantask/all/'.$value['idEvent'];
+                                            $data2 = $this->Main_model->getAPI($url2);
+                                            $id_wilayah = '';
+                                            foreach ($data2 as $key => $row) {
+                                                if($row['idTaskParent']==$value['idTaskParent'] AND $row['idTask']!=null){
+                                                    $id_wilayah = $row['idWilayah'];
+                                                    break;
+                                                }else{
+                                                    echo'';
+                                                }
+                                            }
+                                            $wilayah = '';
+                                            if(strlen($id_wilayah)=='2'){
+                                                $url3 = 'http://pradi.is-very-good.org:7733/api/prov/id/'.$id_wilayah;
+                                                $data_prov = $this->Main_model->getAPI($url3);
+                                                $wilayah = $data_prov['namaProvinsi'];
+                                            }elseif(strlen($id_wilayah)=='4'){
+                                                $url3 = 'http://pradi.is-very-good.org:7733/api/kab/id/'.$id_wilayah;
+                                                $data_kab = $this->Main_model->getAPI($url3);
+                                                $wilayah = $data_kab['namaKabupaten'];
+                                            }elseif(strlen($id_wilayah)=='7'){
+                                                $url3 = 'http://pradi.is-very-good.org:7733/api/kec/id/'.$id_wilayah;
+                                                $data_kab = $this->Main_model->getAPI($url3);
+                                                $wilayah = $data_kab['namaKecamatan'];
+                                            }elseif(strlen($id_wilayah)=='10'){
+                                                $url3 = 'http://pradi.is-very-good.org:7733/api/desa/id/'.$id_wilayah;
+                                                $data_kab = $this->Main_model->getAPI($url3);
+                                                $wilayah = $data_kab['namaDesa'];
+                                            }else{
+                                                echo'';
+                                            }
+                                            echo $wilayah;
+                                            ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <?php
+                            if($value['lampiran']==null){
+                                echo'';
+                            }else{
+                            ?>
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td> Lampiran </td>
+                                                <td>  </td>
+                                                <td><?php
+                                                foreach ($value['lampiran'] as $key => $r) {
+                                                    echo '<iframe src="'.$r['urlFile'].'" width="100%" height="500px"></iframe>';
+                                                }
+                                                ?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <?php
+                            }
+                            break;
+                        }else{
+                            echo'';
+                        }
+                    }   
+                } ?>
                 <div class="col-md-12">
                     <div class="portlet light ">
                         <div class="portlet-body">
@@ -173,7 +148,7 @@
                                         "ajax" : {
                                             type:"POST",
                                             url:"<?= site_url('member/Task/json_detail_task_data'); ?>",
-                                            data:{id_task_parent:'<?= $this->uri->segment(3); ?>'}
+                                            data:{id_task_parent:'<?= $this->uri->segment(3); ?>',id_event:'<?= $id_event; ?>'}
                                         },
                                         "aoColumns": [
                                                     { mData: 'number', sClass: "alignCenter" },

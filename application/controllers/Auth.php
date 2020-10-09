@@ -29,7 +29,7 @@ class Auth extends CI_Controller {
 			$cek2 = $this->Main_model->getSelectedData('user a', '*', array("a.username" => $this->input->post('username'),'pass' => $this->input->post('password'), "a.is_active" => '1', 'deleted' => '0'), 'a.username ASC','','','','')->result();
 			if($cek2!=NULL){
 				foreach ($cek as $key => $value) {
-					$url = 'http://kertasfolio.id:99/api/userdatas/login';
+					$url = 'http://pradi.is-very-good.org:7733/api/userdatas/login';
 					$ch = curl_init($url);
 					$datau = array(
 						'username' => $value->username_api,

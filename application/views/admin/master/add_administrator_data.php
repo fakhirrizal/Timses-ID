@@ -94,7 +94,7 @@
 										<select name='event' id='event' class="form-control select2-allow-clear" required>
 											<option value=''>-- Pilih --</option>
 											<?php
-											$url1 = 'http://kertasfolio.id:99/api/event/all/asc';
+											$url1 = 'http://pradi.is-very-good.org:7733/api/event/all/asc';
 											$data = $this->Main_model->getAPI($url1);
 											foreach ($data as $key => $value) {
 												echo'<option value="'.$value['idEvent'].'">'.$value['namaEvent'].'</option>';

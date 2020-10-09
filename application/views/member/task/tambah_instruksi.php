@@ -238,7 +238,7 @@ $(function(){
                                     <select id="select2-multiple" class="form-control select2-multiple" name='caleg[]' multiple>
                                         <option value=""></option>
                                         <?php
-                                        $url1 = 'http://kertasfolio.id:99/api/userdatas/event/'.$get_info->id_event;
+                                        $url1 = 'http://pradi.is-very-good.org:7733/api/userdatas/event/'.$get_info->id_event;
                                         $data = $this->Main_model->getAPI($url1);
                                         foreach ($data as $key => $value) {
                                             if($value['keterangan']==$this->session->userdata('id')){
@@ -260,10 +260,10 @@ $(function(){
                                     <select id="select2-multiple" class="form-control select2-multiple" name='struktur[]' multiple>
                                         <option value=""></option>
                                         <?php
-                                        $url2 = 'http://kertasfolio.id:99/api/relawandatas/byevent/'.$get_info->id_event;
+                                        $url2 = 'http://pradi.is-very-good.org:7733/api/relawandatas/byevent/'.$get_info->id_event;
                                         $data_r = $this->Main_model->getAPI($url2);
                                         foreach ($data_r as $key => $value) {
-                                            $url3 = 'http://kertasfolio.id:99/api/relawanprofiles/getProfile/'.$value['idRelawan'];
+                                            $url3 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getProfile/'.$value['idRelawan'];
                                             $data_r = $this->Main_model->getAPI($url3);
                                             echo'<option value="'.$value['idRelawan'].'">'.$data_r['namaRelawan'].'</option>';
                                         }
@@ -331,7 +331,7 @@ $(function(){
 											<select id="kabupaten" name="kabupaten" class="form-control select2-allow-clear" >
 												<option value="">-- Pilih --</option>
 											';
-											$url1 = 'http://kertasfolio.id:99/api/kab/prov/'.$get_info->wilayah;
+											$url1 = 'http://pradi.is-very-good.org:7733/api/kab/prov/'.$get_info->wilayah;
 											$data = $this->Main_model->getAPI($url1);
 											foreach ($data as $key => $value) {
 												echo'<option value="'.$value['idKabupaten'].'">'.$value['namaKabupaten'].'</option>';
@@ -343,7 +343,7 @@ $(function(){
 											<select id="kecamatan" name="kecamatan" class="form-control select2-allow-clear" >
 												<option value="">-- Pilih --</option>
 											';
-											$url1 = 'http://kertasfolio.id:99/api/kec/kab/'.$get_info->wilayah;
+											$url1 = 'http://pradi.is-very-good.org:7733/api/kec/kab/'.$get_info->wilayah;
 											$data = $this->Main_model->getAPI($url1);
 											foreach ($data as $key => $value) {
 												echo'<option value="'.$value['idKecamatan'].'">'.$value['namaKecamatan'].'</option>';

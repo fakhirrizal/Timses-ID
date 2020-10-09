@@ -29,7 +29,7 @@
 								<select name='event' class="form-control select2-allow-clear">
 									<option value="All" <?php if($event=='All'){echo'selected';}else{echo'';} ?>>All Event</option>
 									<?php
-									$url1 = 'http://kertasfolio.id:99/api/event/all/asc';
+									$url1 = 'http://pradi.is-very-good.org:7733/api/event/all/asc';
 									$data_event = $this->Main_model->getAPI($url1);
 									foreach ($data_event as $key => $value) {
 										if($value['idEvent']==$event){

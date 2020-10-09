@@ -45,7 +45,7 @@
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
 		<p> 1. Kolom isian dengan tanda bintang (<font color='red'>*</font>) adalah wajib untuk di isi.</p>
-		<p> 2. Kolom <b>NIK</b> akan dijadikan kata sandi untuk masuk Aplikasi Mobile.</p>
+		<p> 2. Kolom <b>Nomor Telpon</b> akan dijadikan <b>username</b>, <b>NIK</b> akan dijadikan <b>kata sandi</b> untuk masuk Aplikasi (Mobile & WEB).</p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
@@ -81,7 +81,7 @@
 								<label class="col-md-2 control-label" for="form_control_1">Nomor Telpon</label>
 								<div class="col-md-10">
 									<div class="input-icon">
-										<input type="text" class="form-control" name="no_hp" placeholder="Type something">
+										<input type="text" class="form-control" name="no_hp" placeholder="Type something" required>
 										<div class="form-control-focus"> </div>
 										<span class="help-block">Some help goes here...</span>
 										<i class="fa fa-phone"></i>
@@ -123,7 +123,7 @@
 											<select id="kabupaten" name="kabupaten" class="form-control select2-allow-clear" required>
 												<option value="">-- Pilih --</option>
 											';
-											$url1 = 'http://kertasfolio.id:99/api/kab/prov/'.$get_info->wilayah;
+											$url1 = 'http://pradi.is-very-good.org:7733/api/kab/prov/'.$get_info->wilayah;
 											$data = $this->Main_model->getAPI($url1);
 											foreach ($data as $key => $value) {
 												echo'<option value="'.$value['idKabupaten'].'">'.$value['namaKabupaten'].'</option>';
@@ -135,7 +135,7 @@
 											<select id="kecamatan" name="kecamatan" class="form-control select2-allow-clear" required>
 												<option value="">-- Pilih --</option>
 											';
-											$url1 = 'http://kertasfolio.id:99/api/kec/kab/'.$get_info->wilayah;
+											$url1 = 'http://pradi.is-very-good.org:7733/api/kec/kab/'.$get_info->wilayah;
 											$data = $this->Main_model->getAPI($url1);
 											foreach ($data as $key => $value) {
 												echo'<option value="'.$value['idKecamatan'].'">'.$value['namaKecamatan'].'</option>';

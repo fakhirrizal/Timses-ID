@@ -104,7 +104,7 @@
 										<select id='event' class="form-control select2-allow-clear" required disabled>
 											<option value=''>-- Pilih --</option>
 											<?php
-											$url1 = 'http://kertasfolio.id:99/api/event/all/asc';
+											$url1 = 'http://pradi.is-very-good.org:7733/api/event/all/asc';
 											$data = $this->Main_model->getAPI($url1);
 											foreach ($data as $key => $value) {
                                                 if($value['idEvent']==$data_user['idEvent']){

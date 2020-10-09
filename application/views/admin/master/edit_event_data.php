@@ -96,7 +96,7 @@
 							if($data_event['roleEvent']=='SELURUH PILKADA'){
 								echo'';
 							}elseif($data_event['roleEvent']=='5469458f-8760-45b1-b05a-a4ca3aab2461'){
-								$url = 'http://kertasfolio.id:99/api/prov/all/asc';
+								$url = 'http://pradi.is-very-good.org:7733/api/prov/all/asc';
 								$data_prov = $this->Main_model->getAPI($url);
 								echo'
 								<div class="form-group form-md-line-input has-danger">
@@ -116,7 +116,7 @@
 									</div>
 								</div>';
 							}elseif($data_event['roleEvent']=='dbabb74d-df5b-4b79-820b-057abdf99b1a'){
-								$url = 'http://kertasfolio.id:99/api/prov/all/asc';
+								$url = 'http://pradi.is-very-good.org:7733/api/prov/all/asc';
 								$data_prov = $this->Main_model->getAPI($url);
 								echo'
 								<div class="form-group form-md-line-input has-danger">
@@ -135,7 +135,7 @@
 										</div>
 									</div>
 								</div><div id="tampil_kabupaten">';
-								$url = 'http://kertasfolio.id:99/api/kab/prov/'.substr($data_event['idWilayahEvent'],0,2);
+								$url = 'http://pradi.is-very-good.org:7733/api/kab/prov/'.substr($data_event['idWilayahEvent'],0,2);
 								$data_kab = $this->Main_model->getAPI($url);
 								echo'
 								<div class="form-group form-md-line-input has-danger">

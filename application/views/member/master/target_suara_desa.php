@@ -47,12 +47,12 @@
 							<?php
 							$no = 1;
 							foreach ($data_relawan as $key => $value) {
-								$url1 = 'http://kertasfolio.id:99/api/relawanprofiles/getProfile/'.$value['idRelawan'];
+								$url1 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getProfile/'.$value['idRelawan'];
 								$data_r = $this->Main_model->getAPI($url1);
-								if($data_r['idKecamatan']==$id_kecamatan){
-									$url2 = 'http://kertasfolio.id:99/api/kec/id/'.$data_r['idKecamatan'];
+								if($data_r['idDesa']==$id_desa){
+									$url2 = 'http://pradi.is-very-good.org:7733/api/kec/id/'.$data_r['idKecamatan'];
 									$data_kec = $this->Main_model->getAPI($url2);
-									$url3 = 'http://kertasfolio.id:99/api/desa/id/'.$data_r['idDesa'];
+									$url3 = 'http://pradi.is-very-good.org:7733/api/desa/id/'.$data_r['idDesa'];
 									$data_desa = $this->Main_model->getAPI($url3);
 							?>
 									<tr class="odd gradeX">
@@ -103,11 +103,11 @@
 							<?php
 							$no = 1;
 							foreach ($data_rekrutmen as $key => $value) {
-								$url4 = 'http://kertasfolio.id:99/api/relawanprofiles/getProfile/'.$value['idRelawan'];
+								$url4 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getProfile/'.$value['idRelawan'];
 								$data_r = $this->Main_model->getAPI($url4);
-								$url5 = 'http://kertasfolio.id:99/api/kec/id/'.$value['idKecamatan'];
+								$url5 = 'http://pradi.is-very-good.org:7733/api/kec/id/'.$value['idKecamatan'];
 								$data_kec = $this->Main_model->getAPI($url5);
-								$url6 = 'http://kertasfolio.id:99/api/desa/id/'.$value['idDesa'];
+								$url6 = 'http://pradi.is-very-good.org:7733/api/desa/id/'.$value['idDesa'];
 								$data_desa = $this->Main_model->getAPI($url6);
 								$status = '';
 								if($value['isVerified']==true){
