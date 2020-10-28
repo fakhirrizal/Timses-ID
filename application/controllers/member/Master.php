@@ -52,7 +52,7 @@ class Master extends CI_Controller {
 			$isi['relawan'] = number_format($target_relawan,0).' / '.number_format($relawan,0);
 			$isi['rekrutmen'] = number_format($target_rekrutmen,0).' / '.number_format(count($data_rekrutmen),0);
 			$isi['action'] =	'
-			<div class="dropdown">
+			<div class="btn-group">
 				<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 					<i class="fa fa-angle-down"></i>
 				</button>
@@ -72,6 +72,30 @@ class Master extends CI_Controller {
 			"iTotalDisplayRecords" => count($data_tampil),
 			"aaData"=>$data_tampil);
 		echo json_encode($results);
+	}
+	public function verif_rekrutmen(){
+		$url1 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/get/'.$this->uri->segment(5);
+		$url2 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/update/';
+		$data = $this->Main_model->getAPI($url1);
+		$data_array = array(
+			"idRekrutmen"=> $data['idRekrutmen'],
+			"idRelawan"=> $data['idRelawan'],
+			"idEvent"=> $data['idEvent'],
+			"namaRekrutmen"=> $data['namaRekrutmen'],
+			"telepon"=> $data['telepon'],
+			"NIK"=> $data['NIK'],
+			"pekerjaan"=> $data['pekerjaan'],
+			"idDesa"=> $data['idDesa'],
+			"idKecamatan"=> $data['idKecamatan'],
+			"idKabupaten"=> $data['idKabupaten'],
+			"idProvinsi"=> $data['idProvinsi'],
+			"fotoKTP"=> $data['idProvinsi'],
+			"isVerified"=> true,
+			"createdDate"=> $data['createdDate']
+		);
+		$data_update = $this->Main_model->updateAPI($url2,$data_array);
+		$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+		echo "<script>window.location='".base_url()."member_side/target_detail/".$this->uri->segment(3)."/".$this->uri->segment(4)."'</script>";
 	}
 	public function target_per_desa(){
 		$data['parent'] = 'master';
@@ -109,7 +133,7 @@ class Master extends CI_Controller {
 			$isi['relawan'] = number_format($get_target->relawan,0).' / '.number_format($relawan,0);
 			$isi['rekrutmen'] = number_format($get_target->rekrutmen,0).' / '.number_format(count($data_rekrutmen),0);
 			$isi['action'] =	'
-			<div class="dropdown">
+			<div class="btn-group">
 				<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 					<i class="fa fa-angle-down"></i>
 				</button>
@@ -208,7 +232,7 @@ class Master extends CI_Controller {
 		$data_tampil = array();
 		$no = 1;
 		foreach ($data as $key => $value) {
-			if($value['keterangan']==$this->session->userdata('id')){
+			if($value['keterangan']==$this->session->userdata('id') OR $value['roleUser']=='C28A1E26-19BD-4813-9247-8333F7ED917D' OR $value['roleUser']=='c28a1e26-19bd-4813-9247-8333f7ed917d' OR $value['keterangan']==$this->session->userdata('id')){
 				echo'';
 			}else{
 				$isi['checkbox'] =	'
@@ -254,7 +278,7 @@ class Master extends CI_Controller {
 				$return_on_click = "return confirm('Anda yakin?')";
 				if($value['roleUser']=='1019ce17-9c80-4beb-8e61-d064fb872cea'){
 					$isi['action'] =	'
-					<div class="dropdown">
+					<div class="btn-group">
 						<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" disabled> Aksi
 							<i class="fa fa-angle-down"></i>
 						</button>
@@ -262,7 +286,7 @@ class Master extends CI_Controller {
 					';
 				}else{
 					$isi['action'] =	'
-									<div class="dropdown">
+									<div class="btn-group">
 										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 											<i class="fa fa-angle-down"></i>
 										</button>
@@ -506,7 +530,7 @@ class Master extends CI_Controller {
 			$isi['wilayah'] = $data_desa['namaDesa'].', '.$data_kec['namaKecamatan'];
 			$return_on_click = "return confirm('Anda yakin?')";
 			$isi['aksi'] =	'
-								<div class="dropdown">
+								<div class="btn-group">
 									<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 										<i class="fa fa-angle-down"></i>
 									</button>
@@ -548,18 +572,21 @@ class Master extends CI_Controller {
 	public function save_relawan_data(){
 		$cek_data = $this->Main_model->getSelectedData('user a', 'a.*', array('a.username'=>$this->input->post('no_hp')))->result();
 		if($cek_data==NULL){
+			$get_info = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
+			$url0 = 'http://pradi.is-very-good.org:7733/api/event/id/'.$get_info->id_event;
+			$data_event = $this->Main_model->getAPI($url0);
 			$user_id = $this->Main_model->getLastID('user','id');
 			$url_insert1 = 'http://pradi.is-very-good.org:7733/api/userdatas/register';
 			$id = $user_id['id']+1;
 			$data_insert1 = array(
 				"idUserDatas"=> $id.random_string('alnum', 4),
-				"idEvent"=> $this->input->post('event'),
-				"idWilayah"=> $this->input->post('wilayah'),
-				"username"=> $this->input->post('username'),
-				"password"=> $this->input->post('pass'),
+				"idEvent"=> $this->input->post('id_event'),
+				"idWilayah"=> $this->input->post('desa'),
+				"username"=> $this->input->post('no_hp'),
+				"password"=> $this->input->post('nik'),
 				"telepon"=> $this->input->post('no_hp'),
 				"namaUser"=> $this->input->post('nama'),
-				"roleEvent"=> $this->input->post('role'),
+				"roleEvent"=> $data_event['roleEvent'],
 				"roleUser"=> 'C28A1E26-19BD-4813-9247-8333F7ED917D',
 				"isActive"=> true,
 				'keterangan' => $id,
@@ -609,7 +636,7 @@ class Master extends CI_Controller {
 			$data3 = array(
 				'user_id' => $id,
 				'role_id' => '5',
-				'id_event' => $this->input->post('event'),
+				'id_event' => $this->input->post('id_event'),
 				'keterangan' => 'Relawan',
 				'wilayah' => $this->input->post('wilayah')
 			);
@@ -913,5 +940,17 @@ class Master extends CI_Controller {
 				echo'';
 			}
 		}
+		elseif($this->input->post('modul')=='modul_detail_foto_ktp'){
+			$get_info = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
+			$url1 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/all/'.$get_info->id_event;
+			$data_ = $this->Main_model->getAPI($url1);
+			foreach ($data_ as $key => $value) {
+				if($value['idRekrutmen']==$this->input->post('id')){
+					echo '<img src="data:image/png;base64,' . $value['fotoKTP'] . '" alt="" width="100%"/>';
+				}else{
+					echo'';
+				}
+			}
+        }
 	}
 }

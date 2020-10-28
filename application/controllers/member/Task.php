@@ -35,10 +35,26 @@ class Task extends CI_Controller {
                         echo'';
                     }
                 }
+                $jumlah_report_task = 0;
+                foreach ($data2 as $key => $row) {
+                    if($row['idTaskParent']!=$value['idTaskParent']){
+                        echo'';
+                    }else{
+                        $url3 = 'http://pradi.is-very-good.org:7733/api/relawanreport/task/'.$row['idTask'].'/'.$value['idEvent'];
+                        $data_laporan = $this->Main_model->getAPI($url3);
+                        if($data_laporan==NULL){
+                            echo'';
+                        }else{
+                            $jumlah_report_task++;
+                            break;
+                        }
+                    }
+                }
                 $isi['number'] = $no++.'.';
                 $isi['judul'] = $value['judulTask'];
                 $pecah_data = explode(',',$value['idRelawan']);
-                $isi['relawan'] = $pecah_data[0].' / '.$pecah_data[2];
+                // $isi['relawan'] = $pecah_data[0].' / '.$pecah_data[2];
+                $isi['relawan'] = number_format($jumlah_report_task,0).' / '.number_format($pecah_data[2],0);
                 $isi['waktu'] = $this->Main_model->convert_tanggal(substr($value['waktuTask'],0,10));
                 $wilayah = '';
                 if(strlen($id_wilayah)=='2'){
@@ -62,7 +78,7 @@ class Task extends CI_Controller {
                 }
                 $isi['wilayah'] = $wilayah;
                 $isi['action'] =	'
-                                    <div class="dropdown">
+                                    <div class="btn-group">
                                         <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
                                             <i class="fa fa-angle-down"></i>
                                         </button>
@@ -174,7 +190,7 @@ class Task extends CI_Controller {
             $return_on_click = "return confirm('Anda yakin?')";
             if($value['isApprove']==false){
                 $isi['action'] =	'
-								<div class="dropdown">
+								<div class="btn-group">
 									<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 										<i class="fa fa-angle-down"></i>
 									</button>
@@ -197,7 +213,7 @@ class Task extends CI_Controller {
 								';
             }else{
                 $isi['action'] =	'
-								<div class="dropdown">
+								<div class="btn-group">
 									<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 										<i class="fa fa-angle-down"></i>
 									</button>

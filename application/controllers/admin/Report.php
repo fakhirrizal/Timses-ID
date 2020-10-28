@@ -66,7 +66,7 @@ class Report extends CI_Controller {
             $isi['realisasi_anggaran'] = 'Rp '.number_format($value->anggaran,2);
             $isi['persentase_anggaran'] = number_format($value->persentase_anggaran,2).'%';
             $isi['aksi'] =	'
-                                <div class="dropdown">
+                                <div class="btn-group">
                                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
                                         <i class="fa fa-angle-down"></i>
                                     </button>
@@ -508,7 +508,7 @@ class Report extends CI_Controller {
             $isi['realisasi_anggaran'] = 'Rp '.number_format($value->anggaran,2);
             $isi['persentase_anggaran'] = number_format($value->persentase_anggaran,2).'%';
             $isi['aksi'] =	'
-                                <div class="dropdown">
+                                <div class="btn-group">
                                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
                                         <i class="fa fa-angle-down"></i>
                                     </button>
@@ -940,7 +940,7 @@ class Report extends CI_Controller {
             $isi['realisasi_anggaran'] = 'Rp '.number_format($value->anggaran,2);
             $isi['persentase_anggaran'] = number_format($value->persentase_anggaran,2).'%';
             $isi['aksi'] =	'
-                                <div class="dropdown">
+                                <div class="btn-group">
                                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
                                         <i class="fa fa-angle-down"></i>
                                     </button>

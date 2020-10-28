@@ -179,6 +179,8 @@ $route['member_side/ubah_data_kelurahan/(:any)'] = 'member/Map/edit_village/$1';
 $route['member_side/perbarui_data_kelurahan'] = 'member/Map/update_village_data';
 $route['member_side/hapus_data_kelurahan/(:any)'] = 'member/Map/delete_village/$1';
 
+$route['member_side/verif_rekrutmen/(:any)/(:any)/(:any)'] = 'member/Master/verif_rekrutmen/$1/$2/$3';
+
 $route['member_side/daftar_instruksi'] = 'member/Task/daftar_instruksi';
 $route['member_side/usulan_instruksi'] = 'member/Task/usulan_instruksi';
 $route['member_side/setujui_usulan/(:any)'] = 'member/Task/setujui_usulan/$1';

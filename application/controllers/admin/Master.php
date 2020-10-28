@@ -41,7 +41,7 @@ class Master extends CI_Controller {
 			$isi['wilayah'] = $wilayah;
 			$return_on_click = "return confirm('Anda yakin?')";
 			$isi['action'] =	'
-								<div class="dropdown">
+								<div class="btn-group">
 									<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 										<i class="fa fa-angle-down"></i>
 									</button>
@@ -149,7 +149,7 @@ class Master extends CI_Controller {
 					}
 					$return_on_click = "return confirm('Anda yakin?')";
 					$isi['action'] =	'
-									<div class="dropdown">
+									<div class="btn-group">
 										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 											<i class="fa fa-angle-down"></i>
 										</button>
@@ -176,7 +176,7 @@ class Master extends CI_Controller {
 						$isi['event'] = $data_e['namaEvent'];
 						$return_on_click = "return confirm('Anda yakin?')";
 						$isi['action'] =	'
-										<div class="dropdown">
+										<div class="btn-group">
 											<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 												<i class="fa fa-angle-down"></i>
 											</button>

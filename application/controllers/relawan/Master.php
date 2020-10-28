@@ -56,7 +56,7 @@ class Master extends CI_Controller {
 				$isi['wilayah'] = $data_desa['namaDesa'].', '.$data_kec['namaKecamatan'];
 				$return_on_click = "return confirm('Anda yakin?')";
 				$isi['aksi'] =	'
-									<div class="dropdown">
+									<div class="btn-group">
 										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 											<i class="fa fa-angle-down"></i>
 										</button>
@@ -94,7 +94,7 @@ class Master extends CI_Controller {
 					$isi['wilayah'] = $data_desa['namaDesa'].', '.$data_kec['namaKecamatan'];
 					$return_on_click = "return confirm('Anda yakin?')";
 					$isi['aksi'] =	'
-										<div class="dropdown">
+										<div class="btn-group">
 											<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 												<i class="fa fa-angle-down"></i>
 											</button>
@@ -138,30 +138,92 @@ class Master extends CI_Controller {
 		$this->load->view('relawan/template/footer');
 	}
 	public function save_relawan_data(){
-		$url_insert = 'http://pradi.is-very-good.org:7733/api/relawandatas/register';
-		$data_insert = array(
-			"idEvent"=> $this->input->post('id_event'),
-			"telepon"=> $this->input->post('no_hp'),
-			"password"=> $this->input->post('nik'),
-			"isActive"=> 'true',
-			"namaRelawan"=> $this->input->post('nama'),
-			"NIK"=> $this->input->post('nik'),
-			"pekerjaan"=> $this->input->post('pekerjaan'),
-			"idDesa"=> $this->input->post('desa'),
-			"idKecamatan"=> $this->input->post('kecamatan'),
-			"idKabupaten"=> $this->input->post('kabupaten'),
-			"idProvinsi"=> $this->input->post('provinsi'),
-			'createdDate'=> date("Y-m-d").'T05:39:56.757Z'
-		);
-		// print_r($data_insert);
-		$this->Main_model->log_activity($this->session->userdata('id'),'Inserting data',"Insert relawan data (".$this->input->post('nama').")",$this->session->userdata('location'));
-		$hasil_insert = $this->Main_model->insertAPI($url_insert,$data_insert);
-		if($hasil_insert>0){
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
-			echo "<script>window.location='".base_url()."relawan_side/daftar_relawan'</script>";
-		}
-		else{
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+		$cek_data = $this->Main_model->getSelectedData('user a', 'a.*', array('a.username'=>$this->input->post('no_hp')))->result();
+		if($cek_data==NULL){
+			$get_info = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
+			$url0 = 'http://pradi.is-very-good.org:7733/api/event/id/'.$get_info->id_event;
+			$data_event = $this->Main_model->getAPI($url0);
+			$user_id = $this->Main_model->getLastID('user','id');
+			$url_insert1 = 'http://pradi.is-very-good.org:7733/api/userdatas/register';
+			$id = $user_id['id']+1;
+			$data_insert1 = array(
+				"idUserDatas"=> $id.random_string('alnum', 4),
+				"idEvent"=> $this->input->post('id_event'),
+				"idWilayah"=> $this->input->post('desa'),
+				"username"=> $this->input->post('no_hp'),
+				"password"=> $this->input->post('nik'),
+				"telepon"=> $this->input->post('no_hp'),
+				"namaUser"=> $this->input->post('nama'),
+				"roleEvent"=> $data_event['roleEvent'],
+				"roleUser"=> 'C28A1E26-19BD-4813-9247-8333F7ED917D',
+				"isActive"=> true,
+				'keterangan' => $id,
+				'createdDate'=> date("Y-m-d").'T05:39:56.757Z'
+			);
+			// print_r($data_insert1);
+			$url_insert2 = 'http://pradi.is-very-good.org:7733/api/relawandatas/register';
+			$data_insert2 = array(
+				"idRelawan"=> $id.random_string('alnum', 4),
+				"idEvent"=> $this->input->post('id_event'),
+				"telepon"=> $this->input->post('no_hp'),
+				"password"=> $this->input->post('nik'),
+				"isActive"=> 'true',
+				"namaRelawan"=> $this->input->post('nama'),
+				"NIK"=> $this->input->post('nik'),
+				"pekerjaan"=> $this->input->post('pekerjaan'),
+				"idDesa"=> $this->input->post('desa'),
+				"idKecamatan"=> $this->input->post('kecamatan'),
+				"idKabupaten"=> $this->input->post('kabupaten'),
+				"idProvinsi"=> $this->input->post('provinsi'),
+				'createdDate'=> date("Y-m-d").'T05:39:56.757Z'
+			);
+			// print_r($data_insert2);
+			$this->db->trans_start();
+			$data1 = array(
+						'id' => $id,
+						'username' => $this->input->post('no_hp'),
+						'pass' => $this->input->post('nik'),
+						'username_api' => $this->input->post('no_hp'),
+						'password_api' => $this->input->post('nik'),
+						'total_login' => '1',
+						'is_active' => '1',
+						'created_at' => date('Y-m-d H:i:s'),
+						'created_by' => $id
+					);
+			// print_r($data1);
+			$this->Main_model->insertData('user',$data1);
+	
+			$data2 = array(
+				'user_id' => $id,
+				'fullname' => $this->input->post('nama'),
+				'nin' => $this->input->post('nik')
+			);
+			// print_r($data2);
+			$this->Main_model->insertData('user_profile',$data2);
+	
+			$data3 = array(
+				'user_id' => $id,
+				'role_id' => '5',
+				'id_event' => $this->input->post('id_event'),
+				'keterangan' => 'Relawan',
+				'wilayah' => $this->input->post('wilayah')
+			);
+			// print_r($data3);
+			$this->Main_model->insertData('user_to_role',$data3);
+			$this->Main_model->log_activity($this->session->userdata('id'),'Inserting data',"Insert relawan data (".$this->input->post('nama').")",$this->session->userdata('location'));
+			$this->db->trans_complete();
+			$hasil_insert = $this->Main_model->insertAPI($url_insert1,$data_insert1);
+			$hasil_insert = $this->Main_model->insertAPI($url_insert2,$data_insert2);
+			if($hasil_insert>0){
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
+				echo "<script>window.location='".base_url()."relawan_side/daftar_relawan'</script>";
+			}
+			else{
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+				echo "<script>window.location='".base_url()."relawan_side/tambah_data_relawan/'</script>";
+			}
+		}else{
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>Username telah digunakan.<br /></div>' );
 			echo "<script>window.location='".base_url()."relawan_side/tambah_data_relawan/'</script>";
 		}
 	}
@@ -279,7 +341,7 @@ class Master extends CI_Controller {
 			
 			$return_on_click = "return confirm('Anda yakin?')";
 			$isi['aksi'] =	'
-							<div class="dropdown">
+							<div class="btn-group">
 								<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 									<i class="fa fa-angle-down"></i>
 								</button>

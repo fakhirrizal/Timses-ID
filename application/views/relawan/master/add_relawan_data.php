@@ -45,7 +45,7 @@
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
 		<p> 1. Kolom isian dengan tanda bintang (<font color='red'>*</font>) adalah wajib untuk di isi.</p>
-		<p> 2. Kolom <b>NIK</b> akan dijadikan kata sandi untuk masuk Aplikasi Mobile.</p>
+		<p> 2. Kolom <b>Nomor Telpon</b> akan dijadikan <b>username</b>, <b>NIK</b> akan dijadikan <b>kata sandi</b> untuk masuk Aplikasi (Mobile & WEB).</p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

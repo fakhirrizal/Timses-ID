@@ -48,7 +48,7 @@
 											{ mData: 'nama', sClass: "alignCenter" } ,
 											{ mData: 'relawan', sClass: "alignCenter" } ,
 											{ mData: 'rekrutmen', sClass: "alignCenter" },
-											{ mData: 'action', sClass: "td_action" }
+											{ mData: 'action' }
 										],
 								"drawCallback": function(data) {
 										$('.detaildata').click(function(){

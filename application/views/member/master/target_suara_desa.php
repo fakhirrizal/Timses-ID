@@ -97,6 +97,7 @@
 								<th style="text-align: center;"> Alamat </th>
 								<th style="text-align: center;"> Status </th>
 								<th style="text-align: center;" > Recruiter </th>
+								<th style="text-align: center;" > Aksi </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -110,10 +111,17 @@
 								$url6 = 'http://pradi.is-very-good.org:7733/api/desa/id/'.$value['idDesa'];
 								$data_desa = $this->Main_model->getAPI($url6);
 								$status = '';
+								$aksi_verif = '';
 								if($value['isVerified']==true){
 									$status = 'Terverifikasi';
 								}else{
 									$status = 'Belum Terverifikasi';
+									$aksi_verif = '
+									<li>
+										<a href="'.base_url().'member_side/verif_rekrutmen/'.$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$value['idRekrutmen'].'">
+											<i class="icon-check"></i> Verifikasi </a>
+									</li>
+									';
 								}
 							?>
 								<tr class="odd gradeX">
@@ -125,15 +133,82 @@
 									<td style="text-align: center;"><?= $data_desa['namaDesa'].', '.$data_kec['namaKecamatan']; ?></td>
 									<td style="text-align: center;"><?= $status; ?></td>
 									<td style="text-align: center;"><?= $data_r['namaRelawan']; ?></td>
+									<td style="text-align: center;">
+										<?php
+											if($value['fotoKTP']==''){
+												$return_on_click = "return confirm('Tidak terdapat foto.')";
+												echo	'
+													<div class="btn-group">
+														<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+															<i class="fa fa-angle-down"></i>
+														</button>
+														<ul class="dropdown-menu pull-right" role="menu">
+															<li>
+																<a href="javascript:void(0)" onclick="'.$return_on_click.'">
+																	<i class="icon-eye"></i> Lihat Foto KTP </a>
+															</li>
+															'.$aksi_verif.'
+														</ul>
+													</div>
+																';
+											}else{
+												echo	'
+													<div class="btn-group">
+														<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+															<i class="fa fa-angle-down"></i>
+														</button>
+														<ul class="dropdown-menu pull-right" role="menu">
+															<li>
+																<a class="detaildata" href="javascript:void(0)" id="'.$value['idRekrutmen'].'">
+																	<i class="icon-eye"></i> Lihat Foto KTP </a>
+															</li>
+															'.$aksi_verif.'
+														</ul>
+													</div>
+																';
+											}
+										?>
+									</td>
 								</tr>
 							<?php
-								
 							}
 							?>
 						</tbody>
 					</table>
+					<script type="text/javascript" language="javascript" >
+						$(document).ready(function(){
+							$('.detaildata').click(function(){
+								var id = $(this).attr("id");
+								var modul = 'modul_detail_foto_ktp';
+								$.ajax({
+									type:"POST",
+									url: "<?php echo site_url(); ?>member/Master/ajax_function",
+									cache: false,
+									data: {id:id,modul:modul},
+									success:function(data){
+									$('#formdetaildata').html(data);
+									$('#detaildata').modal("show");
+									}
+								});
+							});
+						});
+					</script>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+<div class="modal fade" id="detaildata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Detail Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="box box-primary" id='formdetaildata' >
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

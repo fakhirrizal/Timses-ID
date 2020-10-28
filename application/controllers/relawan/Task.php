@@ -49,7 +49,7 @@ class Task extends CI_Controller {
                 }
                 $isi['wilayah'] = $wilayah;
                 $isi['action'] =	'
-                                    <div class="dropdown">
+                                    <div class="btn-group">
                                         <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
                                             <i class="fa fa-angle-down"></i>
                                         </button>
@@ -164,7 +164,7 @@ class Task extends CI_Controller {
                 $return_on_click = "return confirm('Anda yakin?')";
                 if($value['isApprove']==false){
                     $isi['action'] =	'
-                                    <div class="dropdown">
+                                    <div class="btn-group">
                                         <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
                                             <i class="fa fa-angle-down"></i>
                                         </button>
@@ -187,7 +187,7 @@ class Task extends CI_Controller {
                                     ';
                 }else{
                     $isi['action'] =	'
-                                    <div class="dropdown">
+                                    <div class="btn-group">
                                         <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
                                             <i class="fa fa-angle-down"></i>
                                         </button>
