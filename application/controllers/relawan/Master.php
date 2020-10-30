@@ -62,6 +62,10 @@ class Master extends CI_Controller {
 										</button>
 										<ul class="dropdown-menu pull-right" role="menu">
 											<li>
+												<a href="'.site_url('relawan_side/detail_data_relawan/'.$value['idRelawan']).'">
+													<i class="icon-eye"></i> Detail Data </a>
+											</li>
+											<li>
 												<a href="'.site_url('relawan_side/ubah_data_relawan/'.$value['idRelawan']).'">
 													<i class="icon-wrench"></i> Ubah Data </a>
 											</li>
@@ -99,6 +103,10 @@ class Master extends CI_Controller {
 												<i class="fa fa-angle-down"></i>
 											</button>
 											<ul class="dropdown-menu pull-right" role="menu">
+												<li>
+													<a href="'.site_url('relawan_side/detail_data_relawan/'.$value['idRelawan']).'">
+														<i class="icon-eye"></i> Detail Data </a>
+												</li>
 												<li>
 													<a href="'.site_url('relawan_side/ubah_data_relawan/'.$value['idRelawan']).'">
 														<i class="icon-wrench"></i> Ubah Data </a>
@@ -232,9 +240,10 @@ class Master extends CI_Controller {
 		$data['parent'] = 'relawan';
 		$data['child'] = '';
 		$data['grand_child'] = '';
-		// $data['data_utama'] =  $this->Main_model->getSelectedData('kube a', 'a.*', array('md5(a.user_id)'=>$this->uri->segment(3),'a.deleted'=>'0'))->result();
-		// $data['riwayat_pembayaran'] = $this->Main_model->getSelectedData('purchasing a', 'a.*', array('md5(a.user_id)'=>$this->uri->segment(3),'a.deleted'=>'0'))->result();
-		// $data['riwayat_kehadiran'] = $this->Main_model->getSelectedData('presence a', 'a.*', array('md5(a.user_id)'=>$this->uri->segment(3)))->result_array();
+		$url1 = 'http://pradi.is-very-good.org:7733/api/relawanprofiles/getDatas/'.$this->uri->segment(3);
+		$data['data_relawan'] = $this->Main_model->getAPI($url1);
+		$url2 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/relawan/'.$this->uri->segment(3);
+		$data['data_rekrutmen'] = $this->Main_model->getAPI($url2);
 		$this->load->view('relawan/template/header',$data);
 		$this->load->view('relawan/master/detail_relawan_data',$data);
 		$this->load->view('relawan/template/footer');
