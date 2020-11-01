@@ -79,6 +79,10 @@
 											<option value='Pedagang' <?php if($data_utama['pekerjaan']=='Pedagang'){echo'selected';}else{echo'';} ?>>Pedagang</option>
 											<option value='Petani' <?php if($data_utama['pekerjaan']=='Petani'){echo'selected';}else{echo'';} ?>>Petani</option>
 											<option value='Pelajar/ Mahasiswa' <?php if($data_utama['pekerjaan']=='Pelajar/ Mahasiswa'){echo'selected';}else{echo'';} ?>>Pelajar/ Mahasiswa</option>
+											<option value='WIRASWASTA' <?php if($data_utama['pekerjaan']=='WIRASWASTA'){echo'selected';}else{echo'';} ?>>WIRASWASTA</option>
+											<option value='PEGAWAI SWASTA' <?php if($data_utama['pekerjaan']=='PEGAWAI SWASTA'){echo'selected';}else{echo'';} ?>>PEGAWAI SWASTA</option>
+											<option value='GURU/STAF PENGAJAR' <?php if($data_utama['pekerjaan']=='GURU/STAF PENGAJAR'){echo'selected';}else{echo'';} ?>>GURU/STAF PENGAJAR</option>
+											<option value='LAIN-LAIN' <?php if($data_utama['pekerjaan']=='LAIN-LAIN'){echo'selected';}else{echo'';} ?>>LAIN-LAIN</option>
 										</select>
 									</div>
 								</div>

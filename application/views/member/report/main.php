@@ -78,6 +78,10 @@
 										<option value='Pedagang'>Pedagang</option>
 										<option value='Petani'>Petani</option>
 										<option value='Pelajar/ Mahasiswa'>Pelajar/ Mahasiswa</option>
+										<option value='WIRASWASTA'>WIRASWASTA</option>
+										<option value='PEGAWAI SWASTA'>PEGAWAI SWASTA</option>
+										<option value='GURU/STAF PENGAJAR'>GURU/STAF PENGAJAR</option>
+										<option value='LAIN-LAIN'>LAIN-LAIN</option>
 									</select>
 								</div>
 								<div class="col-md-6">
