@@ -688,6 +688,8 @@ class Master extends CI_Controller {
 		$data_insert = array(
 			"idRelawan"=> $this->input->post('id_relawan'),
 			"idEvent"=> $this->input->post('id_event'),
+			"telepon"=> $this->input->post('no_hp'),
+			"password"=> $this->input->post('password'),
 			"namaRelawan"=> $this->input->post('nama'),
 			"NIK"=> $this->input->post('nik'),
 			"pekerjaan"=> $this->input->post('pekerjaan'),
@@ -695,6 +697,11 @@ class Master extends CI_Controller {
 			"idKecamatan"=> $this->input->post('id_kecamatan'),
 			"idKabupaten"=> $this->input->post('id_kabupaten'),
 			"idProvinsi"=> $this->input->post('id_provinsi'),
+			"desa"=> $this->input->post('desa'),
+			"kecamatan"=> $this->input->post('kecamatan'),
+			"kabupaten"=> $this->input->post('kabupaten'),
+			"provinsi"=> $this->input->post('provinsi'),
+			"isActive"=> $this->input->post('is_active'),
 			'createdDate'=> $this->input->post('created_at')
 		);
 		// print_r($data_insert);

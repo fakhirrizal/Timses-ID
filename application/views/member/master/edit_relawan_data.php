@@ -24,14 +24,20 @@
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<form role="form" class="form-horizontal" action="<?= base_url().'member_side/perbarui_data_relawan'; ?>" method="post"  enctype='multipart/form-data'>
-					<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
-					<input type="hidden" name="id_relawan" value="<?=$data_utama['idRelawan'];?>">
-					<input type="hidden" name="id_event" value="<?=$data_utama['idEvent'];?>">
-					<input type="hidden" name="id_desa" value="<?=$data_utama['idDesa'];?>">
-					<input type="hidden" name="id_kecamatan" value="<?=$data_utama['idKecamatan'];?>">
-					<input type="hidden" name="id_kabupaten" value="<?=$data_utama['idKabupaten'];?>">
-					<input type="hidden" name="id_provinsi" value="<?=$data_utama['idProvinsi'];?>">
-					<input type="hidden" name="created_at" value="<?=$data_utama['createdDate'];?>">
+						<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+						<input type="hidden" name="id_relawan" value="<?=$data_utama['idRelawan'];?>">
+						<input type="hidden" name="id_event" value="<?=$data_utama['idEvent'];?>">
+						<input type="hidden" name="password" value="<?=$data_utama['password'];?>">
+						<!-- <input type="hidden" name="id_desa" value="<?=$data_utama['idDesa'];?>"> -->
+						<input type="hidden" name="id_kecamatan" value="<?=$data_utama['idKecamatan'];?>">
+						<input type="hidden" name="id_kabupaten" value="<?=$data_utama['idKabupaten'];?>">
+						<input type="hidden" name="id_provinsi" value="<?=$data_utama['idProvinsi'];?>">
+						<input type="hidden" name="desa" value="<?=$data_utama['desa'];?>">
+						<input type="hidden" name="kecamatan" value="<?=$data_utama['kecamatan'];?>">
+						<input type="hidden" name="kabupaten" value="<?=$data_utama['kabupaten'];?>">
+						<input type="hidden" name="provinsi" value="<?=$data_utama['provinsi'];?>">
+						<input type="hidden" name="is_active" value="<?=$data_utama['isActive'];?>">
+						<input type="hidden" name="created_at" value="<?=$data_utama['createdDate'];?>">
 						<div class="form-body">
 							<div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">Nama <span class="required"> * </span></label>
@@ -55,7 +61,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group form-md-line-input has-danger">
+							<!-- <div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">Nomor Telpon</label>
 								<div class="col-md-10">
 									<div class="input-icon">
@@ -63,6 +69,27 @@
 										<div class="form-control-focus"> </div>
 										<span class="help-block">Some help goes here...</span>
 										<i class="fa fa-phone"></i>
+									</div>
+								</div>
+							</div> -->
+							<div class="form-group form-md-line-input has-danger">
+								<label class="col-md-2 control-label" for="form_control_1">Kelurahan/ Desa <span class="required"> * </span></label>
+								<div class="col-md-10">
+									<div class="input-icon">
+										<select id="desa" name="id_desa" class="form-control select2-allow-clear" required>
+											<option value="">-- Pilih --</option>
+											<?php
+											$url1 = 'http://pradi.is-very-good.org:7733/api/desa/kec/'.$data_utama['idKecamatan'];
+											$data = $this->Main_model->getAPI($url1);
+											foreach ($data as $key => $value) {
+												if($value['idDesa']==$data_utama['idDesa']){
+													echo'<option value="'.$value['idDesa'].'" selected>'.$value['namaDesa'].'</option>';
+												}else{
+													echo'<option value="'.$value['idDesa'].'">'.$value['namaDesa'].'</option>';
+												}
+											}
+											?>
+										</select>
 									</div>
 								</div>
 							</div>
