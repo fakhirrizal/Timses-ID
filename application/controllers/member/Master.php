@@ -31,7 +31,7 @@ class Master extends CI_Controller {
 			$numrow = 1;
 			foreach($sheet as $row){
 				if($numrow > 1){
-					$url = 'http://localhost:8181/api/rekrutmen/relawan/'.$this->input->post('relawan');
+					$url = 'http://pradi.is-very-good.org:7733/api/rekrutmen/relawan/'.$this->input->post('relawan');
 					$data_user = $this->Main_model->getAPI($url);
 					$tanda = 0;
 					foreach ($data_user as $key => $value) {
@@ -259,6 +259,46 @@ class Master extends CI_Controller {
 		$this->load->view('member/template/header',$data);
 		$this->load->view('member/master/target_suara_desa',$data);
 		$this->load->view('member/template/footer');
+	}
+	public function ubah_data_rekrutmen(){
+		$data['parent'] = 'master';
+		$data['child'] = 'target_suara';
+		$data['grand_child'] = '';
+		$data['id_event'] = $this->uri->segment(4);
+		$data['id_desa'] = $this->uri->segment(3);
+		$url1 = 'http://pradi.is-very-good.org:7733/api/desa/id/'.$this->uri->segment(3);
+		$data['data_desa'] = $this->Main_model->getAPI($url1);
+		$url2 = 'http://pradi.is-very-good.org:7733/api/relawandatas/byevent/'.$this->uri->segment(4);
+		$data['data_relawan'] = $this->Main_model->getAPI($url2);
+		$url3 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/get/'.$this->uri->segment(5);
+		$data['data_rekrutmen'] = $this->Main_model->getAPI($url3);
+		$this->load->view('member/template/header',$data);
+		$this->load->view('member/master/edit_data_rekrutmen',$data);
+		$this->load->view('member/template/footer');
+	}
+	public function perbarui_data_rekrutmen(){
+		$url1 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/get/'.$this->input->post('id_rekrutmen');
+		$url2 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/update/';
+		$data = $this->Main_model->getAPI($url1);
+		$data_array = array(
+			"idRekrutmen"=> $data['idRekrutmen'],
+			"idRelawan"=> $data['idRelawan'],
+			"idEvent"=> $data['idEvent'],
+			"namaRekrutmen"=> $this->input->post('nama'),
+			"telepon"=> $this->input->post('no_hp'),
+			"NIK"=> $this->input->post('nik'),
+			"pekerjaan"=> $this->input->post('pekerjaan'),
+			"idDesa"=> $this->input->post('id_desa'),
+			"idKecamatan"=> $data['idKecamatan'],
+			"idKabupaten"=> $data['idKabupaten'],
+			"idProvinsi"=> $data['idProvinsi'],
+			"fotoKTP"=> $data['idProvinsi'],
+			"isVerified"=> true,
+			"createdDate"=> $data['createdDate']
+		);
+		$data_update = $this->Main_model->updateAPI($url2,$data_array);
+		$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+		echo "<script>window.location='".base_url()."member_side/target_detail/".$this->input->post('iddesa')."/".$this->input->post('id_event')."'</script>";
 	}
 	public function edit_target_suara()
 	{

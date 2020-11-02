@@ -180,6 +180,8 @@ $route['member_side/perbarui_data_kelurahan'] = 'member/Map/update_village_data'
 $route['member_side/hapus_data_kelurahan/(:any)'] = 'member/Map/delete_village/$1';
 
 $route['member_side/verif_rekrutmen/(:any)/(:any)/(:any)'] = 'member/Master/verif_rekrutmen/$1/$2/$3';
+$route['member_side/ubah_data_rekrutmen/(:any)/(:any)/(:any)'] = 'member/Master/ubah_data_rekrutmen/$1/$2/$3';
+$route['member_side/perbarui_data_rekrutmen'] = 'member/Master/perbarui_data_rekrutmen';
 
 $route['member_side/daftar_instruksi'] = 'member/Task/daftar_instruksi';
 $route['member_side/usulan_instruksi'] = 'member/Task/usulan_instruksi';

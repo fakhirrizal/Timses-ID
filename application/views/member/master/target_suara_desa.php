@@ -144,6 +144,10 @@
 														</button>
 														<ul class="dropdown-menu pull-right" role="menu">
 															<li>
+																<a href="'.base_url().'member_side/ubah_data_rekrutmen/'.$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$value['idRekrutmen'].'">
+																	<i class="icon-pencil"></i> Ubah Data </a>
+															</li>
+															<li>
 																<a href="javascript:void(0)" onclick="'.$return_on_click.'">
 																	<i class="icon-eye"></i> Lihat Foto KTP </a>
 															</li>
