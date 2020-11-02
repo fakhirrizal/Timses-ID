@@ -5,6 +5,92 @@ class Master extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 	}
+	/* Relawan Rekrutmen */
+	public function import_rekrutmen(){
+		$data['parent'] = 'master';
+		$data['child'] = '';
+		$data['grand_child'] = '';
+		$this->load->view('member/template/header',$data);
+		$this->load->view('member/master/import_rekrutmen',$data);
+		$this->load->view('member/template/footer');
+	}
+	public function proses_import_rekrutmen(){
+		include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+		$namafile = 'bilper'.date('YmdHis').'.xlsx';
+		$config['upload_path'] = 'data_upload/';
+		$config['allowed_types'] = 'xlsx';
+		$config['max_size']	= '7048';
+		$config['overwrite'] = true;
+		$config['file_name'] = $namafile;
+
+		$this->upload->initialize($config);
+		if($this->upload->do_upload('fmasuk')){
+			$excelreader = new PHPExcel_Reader_Excel2007();
+			$loadexcel = $excelreader->load('data_upload/'.$namafile);
+			$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+			$numrow = 1;
+			foreach($sheet as $row){
+				if($numrow > 1){
+					$url = 'http://localhost:8181/api/rekrutmen/relawan/'.$this->input->post('relawan');
+					$data_user = $this->Main_model->getAPI($url);
+					$tanda = 0;
+					foreach ($data_user as $key => $value) {
+						if($value['NIK']==$row['C']){
+							$tanda = 1;
+							break;
+						}else{
+							echo'';
+						}
+					}
+					if($tanda==1){
+						// update
+						$url2 = 'http://pradi.is-very-good.org:7733/api/rekrutmen/update/';
+						$data_array = array(
+							"idRekrutmen"=> $data['idRekrutmen'],
+							"idRelawan"=> $data['idRelawan'],
+							"idEvent"=> $data['idEvent'],
+							"namaRekrutmen"=> $data['namaRekrutmen'],
+							"telepon"=> $data['telepon'],
+							"NIK"=> $data['NIK'],
+							"pekerjaan"=> $data['pekerjaan'],
+							"idDesa"=> $data['idDesa'],
+							"idKecamatan"=> $data['idKecamatan'],
+							"idKabupaten"=> $data['idKabupaten'],
+							"idProvinsi"=> $data['idProvinsi'],
+							"fotoKTP"=> $data['idProvinsi'],
+							"isVerified"=> true,
+							"createdDate"=> $data['createdDate']
+						);
+						$data_update = $this->Main_model->updateAPI($url2,$data_array);
+					}else{
+						// insert
+						$url_insert = 'http://pradi.is-very-good.org:7733/api/rekrutmen/insert/';
+						$data_insert = array(
+							"idRekrutmen"=> $data['idRekrutmen'],
+							"idRelawan"=> $data['idRelawan'],
+							"idEvent"=> $data['idEvent'],
+							"namaRekrutmen"=> $data['namaRekrutmen'],
+							"telepon"=> $data['telepon'],
+							"NIK"=> $data['NIK'],
+							"pekerjaan"=> $data['pekerjaan'],
+							"idDesa"=> $data['idDesa'],
+							"idKecamatan"=> $data['idKecamatan'],
+							"idKabupaten"=> $data['idKabupaten'],
+							"idProvinsi"=> $data['idProvinsi'],
+							"fotoKTP"=> $data['idProvinsi'],
+							"isVerified"=> true,
+							"createdDate"=> $data['createdDate']
+						);
+						$hasil_insert = $this->Main_model->insertAPI($url_insert,$data_insert);
+					}
+				}
+				$numrow++;
+            }
+            unlink(base_url().'data_upload/'.$namafile);
+		}else{
+			echo'';
+		}
+	}
 	/* Target Suara */
 	public function target_suara(){
 		$data['parent'] = 'master';

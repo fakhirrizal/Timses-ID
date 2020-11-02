@@ -198,6 +198,9 @@ $route['member_side/analisis'] = 'member/Report/analysis';
 $route['member_side/tambah_analisis'] = 'member/Report/add_analysis';
 $route['member_side/detil_analisis/(:any)'] = 'member/Report/detail_analysis/$1';
 
+$route['member_side/import_rekrutmen'] = 'member/Master/import_rekrutmen';
+$route['member_side/proses_import_rekrutmen'] = 'member/Master/proses_import_rekrutmen';
+
 $route['member_side/rekap_isu'] = 'member/Report/rekap_isu';
 $route['member_side/hapus_data_isu/(:any)'] = 'member/Report/hapus_data_isu/$1';
 
