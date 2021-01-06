@@ -55,7 +55,7 @@
 											{ mData: 'nama_event', sClass: "alignCenter" } ,
 											{ mData: 'role_event', sClass: "alignCenter" } ,
 											{ mData: 'wilayah', sClass: "alignCenter" },
-											{ mData: 'action', sClass: "td_action" }
+											{ mData: 'action'}
 										]
 							});
 						});
